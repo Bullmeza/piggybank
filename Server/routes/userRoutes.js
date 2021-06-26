@@ -9,7 +9,7 @@ app.post("/validateSession_id",  async(req,res) => {
         if(users.length == 0){
             res.status(200).send({"error" : "No user found"});
         }else{
-            res.status(200).send({"username" : users[0].username, "money" : users[0].money});
+            res.status(200).send({"username" : users[0].username, "money" : users[0].money, "email" : users[0].email});
         }
     }catch(err){
         res.status(200).send({"error" : "Internal Error"});
@@ -50,10 +50,27 @@ app.post("/signup", async (req, res) => {
 });
 
 
+app.post("/editMoney", async (req, res) => {
+    try {
+        const users = await userModel.find({"session_id" : req.body.session_id});
+        if (users.length == 0) {
+            res.status(200).send({"error" : "No account found using that email"});
+        } else {
+            const newMoney = parseInt(users[0].money) + parseInt(req.body.money);
+            userModel.findOneAndUpdate({"session_id" : req.body.session_id}, {"money" : newMoney}, function(err, doc) {
+                if (err) res.status(200).send({"error" : "Upload error"});
+                res.status(200).send("OK")
+            }); 
+        }
+    } catch (err) {
+        res.status(200).send({"error" : "Internal error"});
+    }
+});
+
 app.get("/getAllUsers", async (req, res) => {
     try {
-        const purchases = await userModel.find();
-        res.status(200).send(purchases)
+        const users = await userModel.find();
+        res.status(200).send(users)
     } catch (err) {
         res.status(200).send({"error" : "Internal error"});
     }

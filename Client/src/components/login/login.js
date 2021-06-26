@@ -12,7 +12,7 @@ import Grid from "@material-ui/core/Grid";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-import SignupImage from "../../images/Sign_In_Image.jpg";
+import LoginImage from "../../images/Login_Image.jpg";
 import axios from "axios";
 
 function Copyright() {
@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
     height: "100vh",
   },
   image: {
-    backgroundImage: `url(${SignupImage})`,
+    backgroundImage: `url(${LoginImage})`,
     backgroundRepeat: "no-repeat",
     backgroundColor:
       theme.palette.type === "light"
@@ -67,7 +67,7 @@ function Login() {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
 
-  const handleSignIn = () => {
+  const handleLogin = () => {
     console.log(email, password);
     axios
       .post(`http://localhost:3001/login`, { email: email, password: password }) //this link needs to be changed
@@ -86,20 +86,9 @@ function Login() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign In
+            Login
           </Typography>
           <form className={classes.form} noValidate>
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="username"
-              label="Username"
-              name="username"
-              autoComplete="username"
-              autoFocus
-            />
             <TextField
               variant="outlined"
               margin="normal"
@@ -133,9 +122,9 @@ function Login() {
               variant="contained"
               color="primary"
               className={classes.submit}
-              onClick={handleSignIn}
+              onClick={handleLogin}
             >
-              Sign In
+              Login
             </Button>
             <Grid container>
               <Grid item xs>
@@ -144,9 +133,7 @@ function Login() {
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
-                  {"Don't have an account? Sign up!"}
-                </Link>
+                <a href="/signup">"Don't have an account? Sign up!"</a>
               </Grid>
             </Grid>
             <Box mt={5}>
