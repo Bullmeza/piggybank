@@ -39,16 +39,7 @@ app.post("/signup", async (req, res) => {
 
         user.save((err) => {
             if (err){
-                if(err.keyPattern.username){
-                    res.status(200).send({"error" : "Duplicate Username"});
-                }
-                else if(err.keyPattern.email){
-                    res.status(200).send({"error" : "Duplicate Email"});
-                }
-                else {
-                    res.status(200).send({"error" : "Upload error"});
-                }
-                
+                res.status(200).send({"error" : "Upload error"});
             }
             else{
                 res.status(200).send("OK");
