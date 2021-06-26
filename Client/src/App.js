@@ -9,6 +9,8 @@ import Cart from "./components/cart/cart";
 import Topbar from "./components/topbar/Topbar";
 import Menu from "./components/menu/Menu";
 import RevisedDashboard from "./components/revisedDashboard/Dashboard"
+import LandingPage from "./components/landing/landing";
+
 
 import "./app.scss"
 import { useState } from "react";
@@ -21,7 +23,8 @@ function App() {
 
     <div className="extendPage">
       <Switch>
-        <Route path="/" component={Login} exact />
+        <Route path="/" component={LandingPage} exact />
+        <Route path="/login" component={Login}/>
         <div className="app">
         <Topbar menuOpen={menuOpen} setMenuOpen={setMenuOpen}/>
         <Menu menuOpen={menuOpen} setMenuOpen={setMenuOpen}/>

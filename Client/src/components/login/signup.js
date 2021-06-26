@@ -15,6 +15,7 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import FormControl from "@material-ui/core/FormControl";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
+import { Redirect, Route } from "react-router-dom"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -49,12 +50,21 @@ function Signup() {
     event.preventDefault();
   };
 
+  const cookie = document.cookie;
+  var loggedIn = false;
+
+  if (cookie.includes("session_id")) {
+      loggedIn = true;
+  }
+
+  console.log(loggedIn)
+
   const [open, setOpen] = React.useState(false);
   const [username, setUsername] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [confPassword, setConfPassword] = React.useState("");
-  const [money, setMoney] = React.useState(0);
+  const [money, setMoney] = React.useState("");
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -73,6 +83,7 @@ function Signup() {
         .then((res) => {
           console.log(res);
           console.log(res.data);
+          document.cookie = "session_id=" + res.data.session_id
         });
     } else {
       console.log("passwords don't match");
@@ -81,6 +92,9 @@ function Signup() {
 
   return (
     <div>
+      <Route exact path="/">
+        {loggedIn ? <Redirect to="/dashboard" /> : this}
+      </Route>
       <Button
         style={{ fontSize: "9pt", backgroundColor: "transparent" }}
         onClick={handleClickOpen}
@@ -114,65 +128,39 @@ function Signup() {
             fullWidth
           />
         </DialogContent>
-        <div className={classes.root}>
-          <FormControl className={clsx(classes.margin, classes.textField)}>
-            <InputLabel htmlFor="standard-adornment-password">
-              Password
-            </InputLabel>
-            <Input
-              id="standard-adornment-password"
-              type={values.showPassword ? "text" : "password"}
-              value={values.password}
-              onChange={(e) => setPassword(e.target.value)}
-              endAdornment={
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label="toggle password visibility"
-                    onClick={handleClickShowPassword}
-                    onMouseDown={handleMouseDownPassword}
-                  >
-                    {values.showPassword ? <Visibility /> : <VisibilityOff />}
-                  </IconButton>
-                </InputAdornment>
-              }
-            />
-          </FormControl>
-        </div>
-        <div className={classes.root}>
-          <FormControl className={clsx(classes.margin, classes.textField)}>
-            <InputLabel htmlFor="standard-adornment-password">
-              Confirm Password
-            </InputLabel>
-            <Input
-              id="standard-adornment-password"
-              type={values.showPassword ? "text" : "password"}
-              value={values.password}
-              onChange={(e) => setConfPassword(e.target.value)}
-              endAdornment={
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label="toggle password visibility"
-                    onClick={handleClickShowPassword}
-                    onMouseDown={handleMouseDownPassword}
-                  >
-                    {values.showPassword ? <Visibility /> : <VisibilityOff />}
-                  </IconButton>
-                </InputAdornment>
-              }
-            />
-          </FormControl>
-        </div>
         <DialogContent>
           <TextField
+            autoFocus
             margin="dense"
             id="name"
-            label="Starting Money"
+            label="Password"
+            onChange={(e) => setPassword(e.target.value)}
             type="email"
-            onChange={(e) => setMoney(e.target.value)}
             fullWidth
           />
         </DialogContent>
-        <br />
+        <DialogContent>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="name"
+            label="Confirm Password"
+            onChange={(e) => setConfPassword(e.target.value)}
+            type="email"
+            fullWidth
+          />
+        </DialogContent>
+        <DialogContent>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="name"
+            label="Starting money"
+            onChange={(e) => setMoney(e.target.value)}
+            type="email"
+            fullWidth
+          />
+        </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="secondary">
             Cancel
