@@ -5,6 +5,7 @@ import Dashboard from "./components/dashboard"
 import Marketplace from "./components/marketplace"
 import Settings from "./components/settings"
 import Other from "./components/other"
+import Cart from "./components/cart"
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Route path="/dashboard" component={Dashboard} />
       <Route path="/marketplace" component={Marketplace} />
       <Route path="/settings" component={Settings} />
+      <Route path="/cart" component={Cart} />
       <Route component={Other} />
     </Switch>
   );
