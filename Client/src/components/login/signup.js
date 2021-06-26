@@ -54,7 +54,7 @@ function Signup() {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [confPassword, setConfPassword] = React.useState("");
-  const [money, setMoney] = React.useState("");
+  const [money, setMoney] = React.useState(0);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -117,6 +117,7 @@ function Signup() {
               id="standard-adornment-password"
               type={values.showPassword ? "text" : "password"}
               value={values.password}
+              onChange={(e) => setPassword(e.target.value)}
               endAdornment={
                 <InputAdornment position="end">
                   <IconButton
@@ -140,6 +141,7 @@ function Signup() {
               id="standard-adornment-password"
               type={values.showPassword ? "text" : "password"}
               value={values.password}
+              onChange={(e) => setConfPassword(e.target.value)}
               endAdornment={
                 <InputAdornment position="end">
                   <IconButton
@@ -154,6 +156,16 @@ function Signup() {
             />
           </FormControl>
         </div>
+        <DialogContent>
+          <TextField
+            margin="dense"
+            id="name"
+            label="Starting Money"
+            type="email"
+            onChange={(e) => setMoney(e.target.value)}
+            fullWidth
+          />
+        </DialogContent>
         <br />
         <DialogActions>
           <Button onClick={handleClose} color="secondary">
