@@ -20,8 +20,6 @@ function Dashboard() {
     }
   });
 
-  console.log(loggedIn)
-
   return(
     <div>
       <div className="dashboard">
