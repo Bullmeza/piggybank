@@ -13,15 +13,16 @@ function Signup() {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [confPassword, setConfPassword] = React.useState("");
+  const [money, setMoney] = React.useState("");
 
   const handleClickOpen = () => {
     setOpen(true);
   };
 
   const handleClose = () => {
-    if (password == confPassword) {
+    if (password == confPassword && money >= 0) {
       setOpen(false);
-      axios.post(`http://localhost:3001/signup`, {username: username, email: email, password: password}) //this link needs to be changed
+      axios.post(`http://localhost:3001/signup`, {username: username, email: email, password: password, money: money}) //this link needs to be changed
         .then(res => {
           console.log(res);
           console.log(res.data);
@@ -85,6 +86,17 @@ function Signup() {
             id="name"
             label="Confirm Password"
             onChange={(e) => setConfPassword(e.target.value)}
+            type="email"
+            fullWidth
+          />
+        </DialogContent>
+        <DialogContent>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="name"
+            label="Starting money"
+            onChange={(e) => setMoney(e.target.value)}
             type="email"
             fullWidth
           />

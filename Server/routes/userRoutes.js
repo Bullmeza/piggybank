@@ -51,4 +51,14 @@ app.post("/signup", async (req, res) => {
     }
   });
 
+
+app.get("/getAllUsers", async (req, res) => {
+    try {
+        const purchases = await userModel.find();
+        res.status(200).send(purchases)
+    } catch (err) {
+        res.status(200).send({"error" : "Internal error"});
+    }
+});
+
 module.exports = app;
