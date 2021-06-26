@@ -19,6 +19,7 @@ function Settings() {
             label="Amount ($)"
             fullWidth
             autoComplete="add-money"
+            type="number"
           />
         </Grid>
       </Grid>
@@ -42,6 +43,7 @@ function Settings() {
             label="Amount ($)"
             fullWidth
             autoComplete="add-money"
+            type="number"
           />
         </Grid>
       </Grid>
