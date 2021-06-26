@@ -21,6 +21,8 @@ app.use(require("./routes/userRoutes"))
 app.use(require("./routes/purchaseRoutes"))
 app.use(require("./webscrape/scrape"))
 
+require("./amazon/scrape.js")();
+
 const mongoose = require("mongoose");
 mongoose.connect(
     `mongodb+srv://bullmeza:${MONGODB_PASSWORD}@cluster0.svbe7.mongodb.net/KidBank?retryWrites=true&w=majority`,

@@ -55,6 +55,17 @@ app.get("/parentResponse", async (req, res) => {
     }
 });
 
+app.get("/getAllPurchases", async (req, res) => {
+    try {
+        const purchases = await purchaseModel.find();
+        res.status(200).send(purchases)
+    } catch (err) {
+        res.status(200).send({"error" : "Internal error"});
+    }
+});
+
+
+
 
 module.exports = app;
 
