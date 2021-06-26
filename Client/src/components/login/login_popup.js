@@ -17,6 +17,7 @@ import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import axios from "axios";
 import Signup from "./signup";
 import "./login_popup.scss";
+import { Redirect, Route } from "react-router-dom"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -43,6 +44,15 @@ function LoginPopup() {
     showPassword: false,
   });
 
+  const cookie = document.cookie;
+  var loggedIn = false;
+
+  if (cookie.includes("session_id")) {
+      loggedIn = true;
+  }
+
+  console.log(loggedIn)
+
   const handleClickShowPassword = () => {
     setValues({ ...values, showPassword: !values.showPassword });
   };
@@ -64,13 +74,15 @@ function LoginPopup() {
     setOpen(false);
     axios.post(`http://localhost:3001/login`, {email: email, password: password}) //this link needs to be changed
       .then(res => {
-        console.log(res);
-        console.log(res.data);
+        document.cookie = "session_id=" + res.data.session_id
       });
   };
 
   return (
     <div>
+      <Route exact path="/">
+        {loggedIn ? <Redirect to="/dashboard" /> : this}
+      </Route>
       <div className="alert">
         <p></p>
       </div>

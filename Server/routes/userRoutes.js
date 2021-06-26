@@ -20,12 +20,11 @@ app.post("/validateSession_id",  async(req,res) => {
 app.post("/login", async (req, res) => {
     try {
         const users = await userModel.find({email: req.body.email});
-        if(users.length == 0){
+        if (users.length == 0) {
             res.status(200).send({"error" : "No account found using that email"});
-        }
-        else if(users[0].password != req.body.password){
+        } else if (users[0].password != req.body.password) {
             res.status(200).send({"error" : "Incorrect password"});
-        }else{
+        } else {
             res.status(200).send({"session_id": users[0].session_id})
         }
     } catch (err) {
@@ -39,11 +38,10 @@ app.post("/signup", async (req, res) => {
         const user = new userModel(req.body);
 
         user.save((err) => {
-            if (err){
+            if (err) {
                 res.status(200).send({"error" : "Upload error"});
-            }
-            else{
-                res.status(200).send("OK");
+            } else {
+                res.status(200).send({"session_id": user.session_id})
             }
         });
     } catch (err) {
