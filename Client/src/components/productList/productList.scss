@@ -1,0 +1,14 @@
+// @import "../../global.scss"; // Remove for now
+
+.productList{
+    font-size: 14px;
+    margin-right: 50px;
+    padding: 7px;
+    border-radius: 10px;
+    cursor: pointer; // changes the mouse cursor to pointer finger when hovering over the list items
+
+    &.active{
+        background-color: lightcoral; // main colour
+        color: white;
+    }
+}

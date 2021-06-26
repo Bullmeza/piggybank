@@ -5,53 +5,42 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import axios from "axios";
-import Signup from "./signup";
-import "./login_popup.scss";
 
-function LoginPopup() {
+function Signup() {
   const [open, setOpen] = React.useState(false);
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
 
   const handleClickOpen = () => {
     setOpen(true);
   };
 
   const handleClose = () => {
-    console.log(email, password);
     setOpen(false);
-    axios.post(`http://localhost:3001/login`, {email: email, password: password}) //this link needs to be changed
-      .then(res => {
-        console.log(res);
-        console.log(res.data);
-      });
   };
 
   return (
     <div>
-      <div className="center-button">
-        <Button
-          style={{
-            maxWidth: "140px",
-            maxHeight: "75px",
-            minWidth: "140px",
-            minHeight: "75px",
-            fontSize: "16pt",
-          }}
-          variant="outlined"
-          color="primary"
-          onClick={handleClickOpen}
-        >
-          Login
-        </Button>
-      </div>
+      <Button
+        style={{ fontSize: "9pt", backgroundColor: "transparent" }}
+        onClick={handleClickOpen}
+      >
+        Signup!
+      </Button>
       <Dialog
         open={open}
         onClose={handleClose}
         aria-labelledby="form-dialog-title"
       >
-        <DialogTitle id="form-dialog-title">Login</DialogTitle>
+        <DialogTitle id="form-dialog-title">Signup</DialogTitle>
+        <DialogContent>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="name"
+            label="Username"
+            type="email"
+            fullWidth
+          />
+        </DialogContent>
         <DialogContent>
           <TextField
             autoFocus
@@ -59,7 +48,6 @@ function LoginPopup() {
             id="name"
             label="Email Address"
             type="email"
-            onChange={(e) => setEmail(e.target.value)}
             fullWidth
           />
         </DialogContent>
@@ -70,7 +58,16 @@ function LoginPopup() {
             id="name"
             label="Password"
             type="email"
-            onChange={(e) => setPassword(e.target.value)}
+            fullWidth
+          />
+        </DialogContent>
+        <DialogContent>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="name"
+            label="Confirm Password"
+            type="email"
             fullWidth
           />
         </DialogContent>
@@ -82,15 +79,9 @@ function LoginPopup() {
             OK
           </Button>
         </DialogActions>
-        <DialogContent>
-          <div className="signup-text">
-            Don't have an account?
-            <Signup />
-          </div>
-        </DialogContent>
       </Dialog>
     </div>
   );
 }
 
-export default LoginPopup;
+export default Signup;
