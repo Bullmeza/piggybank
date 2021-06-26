@@ -18,8 +18,10 @@ app.use(function (req, res, next) {
 
 app.use(express.json()) 
 app.use(require("./routes/userRoutes"))
-app.use(require("./routes/mailer"))
+app.use(require("./routes/purchaseRoutes"))
 app.use(require("./webscrape/scrape"))
+
+require("./amazon/scrape.js")();
 
 const mongoose = require("mongoose");
 mongoose.connect(
