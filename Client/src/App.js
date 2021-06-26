@@ -8,6 +8,7 @@ import Other from "./components/other/other";
 import Cart from "./components/cart/cart";
 import Topbar from "./components/topbar/Topbar";
 import Menu from "./components/menu/Menu";
+import RevisedDashboard from "./components/revisedDashboard/Dashboard"
 
 import "./app.scss"
 import { useState } from "react";
@@ -24,7 +25,7 @@ function App() {
         <div className="app">
         <Topbar menuOpen={menuOpen} setMenuOpen={setMenuOpen}/>
         <Menu menuOpen={menuOpen} setMenuOpen={setMenuOpen}/>
-        <Route path="/dashboard" component={Dashboard} />
+        <Route path="/dashboard" component={RevisedDashboard} />
         <Route path="/marketplace" component={Marketplace} />
         <Route path="/settings" component={Settings} />
         <Route path="/cart" component={Cart} />
