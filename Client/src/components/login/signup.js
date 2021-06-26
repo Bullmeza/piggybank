@@ -15,6 +15,7 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import FormControl from "@material-ui/core/FormControl";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
+import { Redirect, Route } from "react-router-dom"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -49,6 +50,15 @@ function Signup() {
     event.preventDefault();
   };
 
+  const cookie = document.cookie;
+  var loggedIn = false;
+
+  if (cookie.includes("session_id")) {
+      loggedIn = true;
+  }
+
+  console.log(loggedIn)
+
   const [open, setOpen] = React.useState(false);
   const [username, setUsername] = React.useState("");
   const [email, setEmail] = React.useState("");
@@ -67,6 +77,7 @@ function Signup() {
         .then(res => {
           console.log(res);
           console.log(res.data);
+          document.cookie = "session_id=" + res.data.session_id
         });
     } else {
       console.log("passwords don't match")
@@ -75,6 +86,9 @@ function Signup() {
 
   return (
     <div>
+      <Route exact path="/">
+        {loggedIn ? <Redirect to="/dashboard" /> : this}
+      </Route>
       <Button
         style={{ fontSize: "9pt", backgroundColor: "transparent" }}
         onClick={handleClickOpen}
