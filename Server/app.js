@@ -3,6 +3,7 @@ const app = express()
 require('dotenv').config()
 const PORT = process.env.PORT || 3001;
 const MONGODB_PASSWORD = "z16oMyPcm5LIab02";
+var fs = require("fs")
 
 
 const cors = require('cors');
@@ -18,6 +19,8 @@ app.use(function (req, res, next) {
 
 app.use(express.json()) 
 app.use(require("./routes/userRoutes"))
+app.use(require("./webscrape/scrape"))
+
 
 const mongoose = require("mongoose");
 mongoose.connect(
@@ -28,7 +31,6 @@ mongoose.connect(
       useUnifiedTopology: true
     }
 );
-
 
 app.get('/yo', (req,res) =>{
     res.send("yo")
