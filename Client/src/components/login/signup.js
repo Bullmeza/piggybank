@@ -79,10 +79,8 @@ function Signup() {
           email: email,
           password: password,
           money: money,
-        }) //this link needs to be changed
+        })
         .then((res) => {
-          console.log(res);
-          console.log(res.data);
           document.cookie = "session_id=" + res.data.session_id
         });
     } else {

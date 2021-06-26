@@ -2,7 +2,7 @@ import axios from "axios";
 
 function Other() {
   console.log("haha");
-  axios
+  /*axios
     .post(`http://localhost:3001/purchaseProduct`, {
       params: {
         name: "toy",
@@ -16,7 +16,7 @@ function Other() {
     .then((res) => {
       console.log(res);
       console.log(res.data);
-    });
+    });*/
 
   return (
     <div className="other">

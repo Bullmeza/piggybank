@@ -19,8 +19,9 @@ export async function validateSession_id() {
 
 
 export async function getAmazonData() {
-    const res = await axios.post(`${domain}/getData`, {})
-    return res
+    const res = await axios.get(`http://localhost:3001/getData`, {})
+    console.log(res.data)
+    return res.data
 }
 
 

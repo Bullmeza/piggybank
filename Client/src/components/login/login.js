@@ -72,8 +72,7 @@ function Login() {
     axios
       .post(`http://localhost:3001/login`, { email: email, password: password }) //this link needs to be changed
       .then((res) => {
-        console.log(res);
-        console.log(res.data);
+        document.cookie = "session_id=" + res.data.session_id
       });
   };
 
