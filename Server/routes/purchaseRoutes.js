@@ -28,22 +28,30 @@ app.get("/parentResponse", async (req, res) => {
         const purchases = await purchaseModel.find({email : req.body.email});
 
         purchases.every(purchase => {
-            console.log(purchase)
+            console.log(purchase._id)
             if(req.body.response == "Accept" && !sentRes && purchase.ASIN == req.body.ASIN){
                 sentRes = true;
-                purchaseModel.deleteOne({"_id" : purchase._id});
-                res.redirect(purchase.link)
+                purchaseModel.deleteOne({"_id" : purchase._id}, (err)=>{
+                    if(err) console.log(err);
+                    console.log("Deleted")
+                });
+                res.redirect(`https://www.amazon.com/gp/aws/cart/add.html?AssociateTag=your-tag&ASIN.1=${purchase.ASIN}&Quantity.1=1`)
             }else if(purchase.ASIN == req.body.ASIN){
-                purchaseModel.deleteOne({"_id" : purchase._id});
+                purchaseModel.deleteOne({"_id" : purchase._id}, (err)=>{
+                    if(err) console.log(err);
+                    console.log("Deleted")
+                });
             }
         });  
+
         if(!sentRes){
-            res.status(200).send("Denied")
+            res.status(200).send("OK : Denied Purchase")
         }
     } catch (err) {
         res.status(200).send({"error" : "Internal error"});
     }
 });
+
 
 module.exports = app;
 
