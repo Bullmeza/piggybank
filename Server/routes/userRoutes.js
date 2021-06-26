@@ -49,7 +49,7 @@ app.post("/signup", async (req, res) => {
     } catch (err) {
         res.status(200).send({"error" : "Internal error"});
     }
-  });
+});
 
 
 app.get("/getAllUsers", async (req, res) => {

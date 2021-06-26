@@ -3,7 +3,6 @@ const cheerio = require('cheerio');
 const fs = require('fs');
 
 
-
 const scrapeAmazon = async () => {
     let links = require('./input.json')
     let productData = [];
@@ -33,4 +32,5 @@ const scrapeAmazon = async () => {
         console.log('Saved!');
     });
 }
+
 module.exports = scrapeAmazon;

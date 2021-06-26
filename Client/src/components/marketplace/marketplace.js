@@ -1,6 +1,7 @@
 import "./marketplace.scss";
 import { useEffect, useState } from "react";
 import ProductList from "../productList/ProductList"
+import axios from "axios"
 import {featuredProducts, 
     otherProductsSection1, 
     otherProductsSection2, 
@@ -8,6 +9,12 @@ import {featuredProducts,
     otherProductsSection4} from "../../allProductsData"
 
 export default function Marketplace() {
+
+    axios.post(`http://localhost:3001/getData`, {}) //this link needs to be changed
+    .then(res => {
+        console.log(res);
+        console.log(res.data);
+    });
 
     // initial use state submenu selected is "featured". setSelected is used to determine the page to take the user to, when selected
     const[selected,setSelected] = useState("featured");

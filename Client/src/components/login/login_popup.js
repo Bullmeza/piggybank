@@ -30,6 +30,9 @@ function LoginPopup() {
 
   return (
     <div>
+      <div className="alert">
+        <p></p>
+      </div>
       <div className="center-button">
         <Button
           style={{
