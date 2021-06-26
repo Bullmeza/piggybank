@@ -140,7 +140,7 @@ export default function SignUp() {
               />
               <FormControlLabel
                 control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I want to receive monthly newletters via email."
+                label="I want to receive monthly newsletters via email."
               />
             </Grid>
           </Grid>
