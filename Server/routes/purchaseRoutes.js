@@ -67,7 +67,6 @@ app.get("/getAllPurchases", async (req, res) => {
 
 
 
-
 module.exports = app;
 
 // MAILER

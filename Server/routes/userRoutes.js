@@ -34,21 +34,13 @@ app.post("/login", async (req, res) => {
 });
 
 app.post("/signup", async (req, res) => {
+    console.log(req.body)
     try {
         const user = new userModel(req.body);
 
         user.save((err) => {
             if (err){
-                if(err.keyPattern.username){
-                    res.status(200).send({"error" : "Duplicate Username"});
-                }
-                else if(err.keyPattern.email){
-                    res.status(200).send({"error" : "Duplicate Email"});
-                }
-                else {
-                    res.status(200).send({"error" : "Upload error"});
-                }
-                
+                res.status(200).send({"error" : "Upload error"});
             }
             else{
                 res.status(200).send("OK");
@@ -57,6 +49,16 @@ app.post("/signup", async (req, res) => {
     } catch (err) {
         res.status(200).send({"error" : "Internal error"});
     }
-  });
+});
+
+
+app.get("/getAllUsers", async (req, res) => {
+    try {
+        const purchases = await userModel.find();
+        res.status(200).send(purchases)
+    } catch (err) {
+        res.status(200).send({"error" : "Internal error"});
+    }
+});
 
 module.exports = app;
