@@ -1,6 +1,10 @@
+import "./settings.scss"
+
 function Settings() {
   return(
-    <div>text</div>
+    <div className="settings">
+      <div className="title">Settings Page</div>
+    </div>
   );
 }
 

@@ -21,10 +21,9 @@ function Other() {
   }
 
   return(
-    <Button
-    onClick={test}>
-      Click me!
-    </Button>
+    <div className="other">
+      Error. Are you searching for your hopes and dreams? It seems your page was not found. Try another page or head back to home.
+    </div>
   );
 
 }
