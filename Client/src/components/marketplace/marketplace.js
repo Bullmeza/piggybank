@@ -9,14 +9,11 @@ import {
   otherProductsSection3,
   otherProductsSection4,
 } from "../../allProductsData";
+import { getAmazonData } from "../../requests";
 
 export default function Marketplace() {
-  axios
-    .post(`http://localhost:3001/getData`, {}) //this link needs to be changed
-    .then((res) => {
-      console.log(res);
-      console.log(res.data);
-    });
+  
+  const productData = getAmazonData()
 
   // initial use state submenu selected is "featured". setSelected is used to determine the page to take the user to, when selected
   const [selected, setSelected] = useState("featured");
