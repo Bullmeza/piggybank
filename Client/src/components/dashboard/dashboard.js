@@ -1,24 +1,15 @@
 import "./dashboard.scss"
 import axios from "axios"
-import { Redirect, Route } from "react-router-dom"
+import { validateSession_id } from "../../requests";
 
 
 
 function Dashboard() {
 
-  const cookie = document.cookie;
-  var user;
-  var money;
+  const load = validateSession_id()
 
-  axios.post(`http://localhost:3001/validateSession_id`, {session_id: cookie.split("=")[1]}) //this link needs to be changed
-  .then(res => {
-    if (typeof res.data.username !== 'undefined') {
-      user = res.data.username;
-      money = res.data.money;
-    } else {
-      window.location.replace("/");
-    }
-  });
+  const username = load.username
+  var money = load.money
 
   return(
     <div>
