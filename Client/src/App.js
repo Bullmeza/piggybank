@@ -1,8 +1,7 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import Login from "./components/login/login";
-import Signup from "./components/signup/signup";
-import Dashboard from "./components/dashboard/dashboard";
+import SignUp from "./components/signup/signup";
 import Marketplace from "./components/marketplace/marketplace";
 import Settings from "./components/settings/settings";
 import Other from "./components/other/other";
@@ -23,7 +22,7 @@ function App() {
       <Switch>
         <Route path="/" component={LandingPage} exact />
         <Route path="/login" component={Login} />
-        <Route path="/signup" component={Signup} />
+        <Route path="/signup" component={SignUp} />
         <div className="app">
           <Topbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
           <Menu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
