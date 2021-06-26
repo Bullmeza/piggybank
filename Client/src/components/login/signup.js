@@ -61,15 +61,21 @@ function Signup() {
   };
 
   const handleClose = () => {
-    if (password == confPassword && money >= 0) {
+    if (password === confPassword && money >= 0) {
       setOpen(false);
-      axios.post(`http://localhost:3001/signup`, {username: username, email: email, password: password, money: money}) //this link needs to be changed
-        .then(res => {
+      axios
+        .post(`http://localhost:3001/signup`, {
+          username: username,
+          email: email,
+          password: password,
+          money: money,
+        }) //this link needs to be changed
+        .then((res) => {
           console.log(res);
           console.log(res.data);
         });
     } else {
-      console.log("passwords don't match")
+      console.log("passwords don't match");
     }
   };
 
