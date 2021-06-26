@@ -4,11 +4,12 @@ import './index.css';
 import { BrowserRouter } from 'react-router-dom'
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import LoginPopup from "./components/login/login_popup"
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <LoginPopup />
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
