@@ -71,6 +71,23 @@ export default function SignUp() {
     }
   };
 
+  const validateUsername = () => {
+    if (username.length < 3 && username.length > 0) {
+      return "Username length must be at least 3 characters.";
+    }
+    return " ";
+  };
+
+  const validatePassword = () => {
+    if (password.length < 6 && password.length > 0) {
+      return "Password length must be at least 6 characters.";
+    }
+    if (password !== confPassword) {
+      return "Passwords do no match.";
+    }
+    return " ";
+  };
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -92,6 +109,8 @@ export default function SignUp() {
                 label="Username"
                 name="username"
                 autoComplete="username"
+                error={username.length < 3 && username.length > 0}
+                helperText={validateUsername()}
                 onChange={(e) => setUsername(e.target.value)}
               />
             </Grid>
@@ -104,6 +123,7 @@ export default function SignUp() {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                helperText=" "
                 onChange={(e) => setEmail(e.target.value)}
               />
             </Grid>
@@ -117,6 +137,7 @@ export default function SignUp() {
                 type="password"
                 id="password"
                 autoComplete="password"
+                helperText=" "
                 onChange={(e) => setPassword(e.target.value)}
               />
             </Grid>
@@ -130,6 +151,11 @@ export default function SignUp() {
                 type="password"
                 id="confirm-password"
                 autoComplete="confirm-password"
+                error={
+                  (password.length < 6 && password.length > 0) ||
+                  password !== confPassword
+                }
+                helperText={validatePassword()}
                 onChange={(e) => setConfPassword(e.target.value)}
               />
             </Grid>
@@ -137,10 +163,6 @@ export default function SignUp() {
               <FormControlLabel
                 control={<Checkbox value="allowExtraEmails" color="primary" />}
                 label="I agree to the terms and conditions. *"
-              />
-              <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I want to receive monthly newsletters via email."
               />
             </Grid>
           </Grid>
