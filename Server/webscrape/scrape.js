@@ -2,6 +2,7 @@ const axios = require('axios');
 const express = require("express");
 const cheerio = require('cheerio');
 var unirest = require("unirest");
+var fs = require("fs")
 const app = express();
 app.use(express.json()) 
 
