@@ -1,11 +1,11 @@
-import React from "react"
-import { Route, Switch } from "react-router-dom"
-import Login from "./components/login"
-import Dashboard from "./components/dashboard"
-import Marketplace from "./components/marketplace"
-import Settings from "./components/settings"
-import Other from "./components/other"
-import Cart from "./components/cart"
+import React from "react";
+import { Route, Switch } from "react-router-dom";
+import Login from "./components/login/login";
+import Dashboard from "./components/dashboard";
+import Marketplace from "./components/marketplace";
+import Settings from "./components/settings";
+import Other from "./components/other";
+import Cart from "./components/cart";
 
 function App() {
   return (
