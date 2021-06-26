@@ -1,0 +1,26 @@
+const express = require('express')
+const app = express()
+require('dotenv').config()
+const PORT = process.env.PORT || 3001;
+
+
+const cors = require('cors');
+app.use(cors({origin: 'http://localhost:3000',credentials : true}));
+app.use(function (req, res, next) {	
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');    
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');    
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');   
+    res.setHeader('Access-Control-Allow-Credentials', true);    
+    next();
+});
+
+
+app.use(express.json()) 
+
+app.get('/yo', (req,res) =>{
+    res.send("yo")
+});
+
+app.listen(PORT, ()=>{
+    console.log("Port: " +  PORT)
+})
