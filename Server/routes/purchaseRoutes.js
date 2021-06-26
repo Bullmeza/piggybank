@@ -7,12 +7,15 @@ const app = express();
 
 app.post("/purchaseProduct", async (req, res) => {
     try {
-        const purchase = new purchaseModel(req.body);
+        console.log(req.body)
+        const purchase = new purchaseModel(req.body.params);
+
+        console.log(purchase)
 
         purchase.save((err) => {
             if (err) res.status(200).send({"error" : "Upload error"}); 
             else {
-                sendMail(req.body)
+                sendMail(req.body.params)
                 res.status(200).send("OK");
             } 
         });
