@@ -6,8 +6,49 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import axios from "axios";
+import clsx from "clsx";
+import { makeStyles } from "@material-ui/core/styles";
+import IconButton from "@material-ui/core/IconButton";
+import Input from "@material-ui/core/Input";
+import InputLabel from "@material-ui/core/InputLabel";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import FormControl from "@material-ui/core/FormControl";
+import Visibility from "@material-ui/icons/Visibility";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: "flex",
+    flexWrap: "wrap",
+  },
+  margin: {
+    marginLeft: theme.spacing(3),
+    marginRight: theme.spacing(3),
+    marginTop: theme.spacing(1.7),
+    marginBottom: theme.spacing(1.7),
+  },
+  withoutLabel: {
+    marginTop: theme.spacing(3),
+  },
+  textField: {
+    width: "25ch",
+  },
+}));
 
 function Signup() {
+  const classes = useStyles();
+  const [values, setValues] = React.useState({
+    showPassword: false,
+  });
+
+  const handleClickShowPassword = () => {
+    setValues({ ...values, showPassword: !values.showPassword });
+  };
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
+
   const [open, setOpen] = React.useState(false);
   const [username, setUsername] = React.useState("");
   const [email, setEmail] = React.useState("");
@@ -59,7 +100,6 @@ function Signup() {
         </DialogContent>
         <DialogContent>
           <TextField
-            autoFocus
             margin="dense"
             id="name"
             label="Email Address"
@@ -68,39 +108,53 @@ function Signup() {
             fullWidth
           />
         </DialogContent>
-        <DialogContent>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Password"
-            onChange={(e) => setPassword(e.target.value)}
-            type="email"
-            fullWidth
-          />
-        </DialogContent>
-        <DialogContent>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Confirm Password"
-            onChange={(e) => setConfPassword(e.target.value)}
-            type="email"
-            fullWidth
-          />
-        </DialogContent>
-        <DialogContent>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Starting money"
-            onChange={(e) => setMoney(e.target.value)}
-            type="email"
-            fullWidth
-          />
-        </DialogContent>
+        <div className={classes.root}>
+          <FormControl className={clsx(classes.margin, classes.textField)}>
+            <InputLabel htmlFor="standard-adornment-password">
+              Password
+            </InputLabel>
+            <Input
+              id="standard-adornment-password"
+              type={values.showPassword ? "text" : "password"}
+              value={values.password}
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                    onMouseDown={handleMouseDownPassword}
+                  >
+                    {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                  </IconButton>
+                </InputAdornment>
+              }
+            />
+          </FormControl>
+        </div>
+        <div className={classes.root}>
+          <FormControl className={clsx(classes.margin, classes.textField)}>
+            <InputLabel htmlFor="standard-adornment-password">
+              Confirm Password
+            </InputLabel>
+            <Input
+              id="standard-adornment-password"
+              type={values.showPassword ? "text" : "password"}
+              value={values.password}
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                    onMouseDown={handleMouseDownPassword}
+                  >
+                    {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                  </IconButton>
+                </InputAdornment>
+              }
+            />
+          </FormControl>
+        </div>
+        <br />
         <DialogActions>
           <Button onClick={handleClose} color="secondary">
             Cancel

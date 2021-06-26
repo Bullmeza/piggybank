@@ -10,7 +10,7 @@ import Other from "./components/other/other"
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <LoginPopup />
+      <App />
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
