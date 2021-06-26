@@ -18,7 +18,7 @@ app.use(function (req, res, next) {
 
 app.use(express.json()) 
 app.use(require("./routes/userRoutes"))
-app.use(require("./routes/mailer"))
+app.use(require("./routes/purchaseRoutes"))
 app.use(require("./webscrape/scrape"))
 
 const mongoose = require("mongoose");
