@@ -502,5 +502,14 @@ app.get("/sendMail", async (req, res) => {
       });
 });
 
+
+app.get("/amazonRedirect", (req, res) => {
+    /*
+    Send user to "new page"
+    new page gets their session id, subtracts the money, and redirects to amazon
+    */
+});
+
+
 module.exports = app;
 
