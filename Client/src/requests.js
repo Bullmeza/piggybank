@@ -8,26 +8,33 @@ export async function validateSession_id() {
         "session_id" : session_id
     })
 
-    return res.data;
+    const loggedIn = typeof res.data.err !== 'undefined';
+
+    if (loggedIn) {
+        return {username: res.data.username, money: res.data.money}
+    } else {
+        window.location.replace("/");
+    }
 }
 
 
-export async function purchaseProduct(name,price,image,link,email){
-    // axios
-    //     .post(`http://localhost:3001/purchaseProduct`, {
-    //     params: {
-    //         name: "toy",
-    //         price: 20,
-    //         image: "https://m.media-amazon.com/images/I/71GS2dvqm9L._AC_UL320_.jpg",
-    //         link: "https://www.amazon.ca/dp/B0833PBSPF/?psc=1",
-    //         ASIN: "B0833PBSPF",
-    //         email: "abhijain1778@gmail.com",
-    //     },
-    //     }) //this link needs to be changed
-    //     .then((res) => {
-    //     console.log(res);
-    //     console.log(res.data);
-    //     });
+export async function getAmazonData() {
+    const res = await axios.post(`${domain}/getData`, {})
+    return res
+}
+
+
+export async function purchaseProduct(name,price,image,link,asin,email){
+    axios.post(`${domain}/purchaseProduct`, {
+        params: {
+            name: name,
+            price: price,
+            image: image,
+            link: link,
+            ASIN: asin,
+            email: email,
+        },
+    })   
 }
 
 
