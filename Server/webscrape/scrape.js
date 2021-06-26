@@ -1,6 +1,4 @@
-const axios = require('axios');
 const express = require("express");
-const cheerio = require('cheerio');
 var unirest = require("unirest");
 const app = express();
 app.use(express.json()) 

@@ -19,11 +19,8 @@ app.use(function (req, res, next) {
 
 app.use(express.json()) 
 app.use(require("./routes/userRoutes"))
-<<<<<<< HEAD
 app.use(require("./routes/mailer"))
-=======
 app.use(require("./webscrape/scrape"))
->>>>>>> a4b57601ed25d0a2d8926d7edd1f6e0b589f54ec
 
 
 const mongoose = require("mongoose");
