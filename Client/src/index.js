@@ -5,11 +5,12 @@ import { BrowserRouter } from 'react-router-dom'
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import LoginPopup from "./components/login/login_popup"
+import Other from "./components/other/other"
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <LoginPopup />
+      <Other />
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
