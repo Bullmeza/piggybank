@@ -21,7 +21,18 @@ function LoginPopup() {
   return (
     <div>
       <div className="center-button">
-        <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+        <Button
+          style={{
+            maxWidth: "140px",
+            maxHeight: "75px",
+            minWidth: "140px",
+            minHeight: "75px",
+            fontSize: "16pt",
+          }}
+          variant="outlined"
+          color="primary"
+          onClick={handleClickOpen}
+        >
           Login
         </Button>
       </div>
@@ -52,7 +63,7 @@ function LoginPopup() {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
+          <Button onClick={handleClose} color="secondary">
             Cancel
           </Button>
           <Button onClick={handleClose} color="primary">
