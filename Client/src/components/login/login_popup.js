@@ -20,7 +20,7 @@ function LoginPopup() {
   const handleClose = () => {
     console.log(email, password)
     setOpen(false);
-    axios.post(`http://localhost:3001/login`, {email: email, password: password})
+    axios.post(`http://localhost:3001/login`, {email: email, password: password}) //this link needs to be changed
       .then(res => {
         console.log(res);
         console.log(res.data);
