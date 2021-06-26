@@ -43,7 +43,6 @@ function Signup() {
         </DialogContent>
         <DialogContent>
           <TextField
-            autoFocus
             margin="dense"
             id="name"
             label="Email Address"
@@ -53,7 +52,6 @@ function Signup() {
         </DialogContent>
         <DialogContent>
           <TextField
-            autoFocus
             margin="dense"
             id="name"
             label="Password"
@@ -63,7 +61,6 @@ function Signup() {
         </DialogContent>
         <DialogContent>
           <TextField
-            autoFocus
             margin="dense"
             id="name"
             label="Confirm Password"

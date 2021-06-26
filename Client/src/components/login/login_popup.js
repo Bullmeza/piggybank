@@ -66,7 +66,6 @@ function LoginPopup() {
         </DialogContent>
         <DialogContent>
           <TextField
-            autoFocus
             margin="dense"
             id="name"
             label="Password"
