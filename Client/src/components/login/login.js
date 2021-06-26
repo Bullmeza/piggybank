@@ -12,7 +12,7 @@ import Grid from "@material-ui/core/Grid";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-import SignupImage from "../../images/Sign_In_Image.jpg";
+import SignInImage from "../../images/Sign_In_Image.jpg";
 import axios from "axios";
 
 function Copyright() {
@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
     height: "100vh",
   },
   image: {
-    backgroundImage: `url(${SignupImage})`,
+    backgroundImage: `url(${SignInImage})`,
     backgroundRepeat: "no-repeat",
     backgroundColor:
       theme.palette.type === "light"
@@ -95,17 +95,6 @@ function Login() {
               margin="normal"
               required
               fullWidth
-              id="username"
-              label="Username"
-              name="username"
-              autoComplete="username"
-              autoFocus
-            />
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
               id="email"
               label="Email Address"
               name="email"
@@ -145,9 +134,7 @@ function Login() {
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
-                  {"Don't have an account? Sign up!"}
-                </Link>
+                <a href="/signup">"Don't have an account? Sign up!"</a>
               </Grid>
             </Grid>
             <Box mt={5}>
