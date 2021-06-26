@@ -27,19 +27,20 @@ app.post("/purchaseProduct", async (req, res) => {
 
 app.get("/parentResponse", async (req, res) => {
     let sentRes = false;
+    console.log(req.query)
     try {
-        const purchases = await purchaseModel.find({email : req.body.email});
+        const purchases = await purchaseModel.find({email : req.query.email});
 
         purchases.every(purchase => {
             console.log(purchase._id)
-            if(req.body.response == "Accept" && !sentRes && purchase.ASIN == req.body.ASIN){
+            if(req.query.response == "Accept" && !sentRes && purchase.ASIN == req.query.ASIN){
                 sentRes = true;
                 purchaseModel.deleteOne({"_id" : purchase._id}, (err)=>{
                     if(err) console.log(err);
                     console.log("Deleted")
                 });
                 res.redirect(`https://www.amazon.com/gp/aws/cart/add.html?AssociateTag=your-tag&ASIN.1=${purchase.ASIN}&Quantity.1=1`)
-            }else if(purchase.ASIN == req.body.ASIN){
+            }else if(purchase.ASIN == req.query.ASIN){
                 purchaseModel.deleteOne({"_id" : purchase._id}, (err)=>{
                     if(err) console.log(err);
                     console.log("Deleted")
@@ -498,7 +499,7 @@ const sendMail = async({name,price,image,link,ASIN,email}) => {
       <div align="center">
         <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-spacing: 0; border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;font-family:georgia,palatino;"><tr><td style="font-family:georgia,palatino;" align="center"><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="" style="height:36px; v-text-anchor:middle; width:280px;" arcsize="11%" stroke="f" fillcolor="#2dc26b"><w:anchorlock/><center style="color:#FFFFFF;font-family:georgia,palatino;"><![endif]-->
           <a href="" target="_blank" style="box-sizing: border-box;display: inline-block;font-family:georgia,palatino;text-decoration: none;-webkit-text-size-adjust: none;text-align: center;color: #FFFFFF; background-color: #2dc26b; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; width:100%; max-width:100%; overflow-wrap: break-word; word-break: break-word; word-wrap:break-word; mso-border-alt: none;">
-            <span style="display:block;padding:10px 20px;line-height:120%;"><span style="font-size: 14px; line-height: 16.8px;">Confirm Purchase</span></span>
+            <a href="http://localhost:3001/parentResponse?email=${email}&response=Accept&ASIN=${ASIN}" style="display:block;padding:10px 20px;line-height:120%;"><span style="font-size: 14px; line-height: 16.8px;">Confirm Purchase</span></a>
           </a>
         <!--[if mso]></center></v:roundrect></td></tr></table><![endif]-->
       </div>
