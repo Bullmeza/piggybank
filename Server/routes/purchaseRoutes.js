@@ -32,15 +32,15 @@ app.get("/parentResponse", async (req, res) => {
         const purchases = await purchaseModel.find({email : req.query.email});
 
         purchases.every(purchase => {
-            console.log(purchase._id)
-            if(req.query.response == "Accept" && !sentRes && purchase.ASIN == req.query.ASIN){
+            console.log(purchase._id, purchase.ASIN, req.query.ASIN)
+            if (req.query.response == "Accept" && !sentRes && purchase.ASIN == req.query.ASIN){
                 sentRes = true;
                 purchaseModel.deleteOne({"_id" : purchase._id}, (err)=>{
                     if(err) console.log(err);
                     console.log("Deleted")
                 });
-                res.redirect(`https://www.amazon.com/gp/aws/cart/add.html?AssociateTag=your-tag&ASIN.1=${purchase.ASIN}&Quantity.1=1`)
-            }else if(purchase.ASIN == req.query.ASIN){
+                res.redirect(`http://localhost:3001/editMoneyRedirect?email=${req.query.email}&ASIN=${req.query.ASIN}&money=${purchase.price}`)
+            } else if (purchase.ASIN == req.query.ASIN) {
                 purchaseModel.deleteOne({"_id" : purchase._id}, (err)=>{
                     if(err) console.log(err);
                     console.log("Deleted")

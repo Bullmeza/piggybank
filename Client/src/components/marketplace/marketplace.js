@@ -131,6 +131,7 @@ export default function Marketplace() {
             <div className="container" style={{minHeight: "100vh", overflow: "visible"}}>
                 {/* shows all item images and titles for the current chosen submenu (e.g. featured, mobile, web, etc...). setData is used in useEffect() to change the shown data (projects) */}
                 {data.map((data) => {
+                    console.log(data.name, data.price, data.image, data.link, data.ASIN, email)
                     return (
                         <Card style={{width: "30%", height: "40%"}}>
                             <CardActionArea>

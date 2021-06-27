@@ -36,6 +36,7 @@ export async function getAmazonData() {
 
 
 export async function purchaseProduct(name,price,image,link,asin,email){
+    console.log(name, price, image, link, asin, email)
     axios.post(`${domain}/purchaseProduct`, {
         params: {
             name: name,

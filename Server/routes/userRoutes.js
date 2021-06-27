@@ -19,6 +19,7 @@ app.post("/validateSession_id",  async(req,res) => {
 
 app.post("/login", async (req, res) => {
     try {
+        console.log("here")
         const users = await userModel.find({email: req.body.email});
         if (users.length == 0) {
             res.status(200).send({"error" : "No account found using that email"});
@@ -56,7 +57,7 @@ app.post("/editMoney", async (req, res) => {
         if (users.length == 0) {
             res.status(200).send({"error" : "No account found using that email"});
         } else {
-            const newMoney = parseInt(users[0].money) + parseInt(req.body.money);
+            const newMoney = parseFloat(users[0].money) + parseFloat(req.body.money);
             userModel.findOneAndUpdate({"session_id" : req.body.session_id}, {"money" : newMoney}, function(err, doc) {
                 if (err) res.status(200).send({"error" : "Upload error"});
                 res.status(200).send("OK")
@@ -66,6 +67,25 @@ app.post("/editMoney", async (req, res) => {
         res.status(200).send({"error" : "Internal error"});
     }
 });
+
+
+app.post("/editMoneyRedirect", async (req, res) => {
+    try {
+        const users = await userModel.find({"email" : req.body.email});
+        if (users.length == 0) {
+            res.status(200).send({"error" : "No account found using that email"});
+        } else {
+            const newMoney = parseFloat(users[0].money) - parseFloat(req.body.money);
+            userModel.findOneAndUpdate({"email" : req.body.email}, {"money" : newMoney}, function(err, doc) {
+                if (err) res.status(200).send({"error" : "Upload error"});
+                res.redirect(`https://www.amazon.com/gp/aws/cart/add.html?AssociateTag=your-tag&ASIN.1=${req.body.ASIN}&Quantity.1=1`)
+            }); 
+        }
+    } catch (err) {
+        res.status(200).send({"error" : "Internal error"});
+    }
+});
+
 
 app.get("/getAllUsers", async (req, res) => {
     try {
