@@ -4,12 +4,27 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import PeopleIcon from '@material-ui/icons/People';
+import PeopleIcon from '@material-ui/icons/Person';
 import SettingsIcon from '@material-ui/icons/Settings';
 import HourglassEmptyIcon from '@material-ui/icons/HourglassEmpty';
+import MoodIcon from '@material-ui/icons/Mood';
 
 
-export const mainListItems = (
+export const mainListItems = (name) =>{
+  return (
+    <div>
+    <ListItem>
+      <ListItemIcon>
+        <MoodIcon/>
+      </ListItemIcon>
+      <ListItemText primary={name}/>
+    </ListItem>
+  </div>
+  );
+} 
+
+
+export const secondaryListItems = (
   <div>
     <ListItem button component="a" href="/dashboard">
       <ListItemIcon>
@@ -35,11 +50,6 @@ export const mainListItems = (
       </ListItemIcon>
       <ListItemText primary="Settings" />
     </ListItem>
-  </div>
-);
-
-export const secondaryListItems = (
-  <div>
     <ListItem button>
       <ListItemIcon>
         <PeopleIcon />
