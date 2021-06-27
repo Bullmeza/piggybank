@@ -56,7 +56,8 @@ export default function Marketplace() {
 
   const useStyles = makeStyles({
     root: {
-      maxWidth: 345,
+      width: "300px",
+      height: "auto"
     },
     media: {
       height: 140,
@@ -131,11 +132,12 @@ export default function Marketplace() {
                 {/* shows all item images and titles for the current chosen submenu (e.g. featured, mobile, web, etc...). setData is used in useEffect() to change the shown data (projects) */}
                 {data.map((data) => {
                     return (
-                        <Card className={useStyles.root}>
+                        <Card style={{width: "30%", height: "40%"}}>
                             <CardActionArea>
                                 <CardMedia
-                                    className={useStyles.media}
-                                    image={data.image}
+                                    component="img"
+                                    style={{width: "100%", height: "auto"}}
+                                    src={data.image}
                                     title={data.name}
                                 />
                                 <CardContent>
@@ -148,7 +150,7 @@ export default function Marketplace() {
                                 <Button size="small" color="primary" onClick={() => window.location.replace(data.link)}>
                                     View
                                 </Button>
-                                <Button size="small" color="primary" onclick={() => purchaseProduct(data.name, data.price, data.image, data.link, data.ASIN, email)}>
+                                <Button size="small" color="primary" onClick={() => purchaseProduct(data.name, data.price, data.image, data.link, data.ASIN, email)}>
                                    Buy
                                 </Button>
                             </CardActions>
