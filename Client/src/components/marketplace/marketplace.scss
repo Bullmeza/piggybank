@@ -1,0 +1,78 @@
+.marketplace{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+
+    h1{
+        font-size: 5vw; // previously 70px
+
+    }
+
+    ul{
+        margin: 10px;
+        padding: 0;
+        list-style: none; // removes bullet point symbols
+        display: flex;
+    }
+
+    .container{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center; // even spacing
+        flex-wrap: wrap;
+
+        .item{
+            // width: 220px; suggested sizing
+            // height: 150px; suggested sizing
+            width:30%; // previously 400px
+            height: 40%; // previously 290px
+            overflow-y: hidden; // personally added this as this removed the scroll bars
+            border-radius: 20px;
+            border: 1px solid #f0efef; // 1px light grey solfid border for the items
+            margin: 10px 20px; // 30px top/bottom and 20px left/right
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            position: relative; // parent position must be raltive to an absolute child element
+            transition: all .5s ease;
+            cursor: pointer;
+            
+
+            a{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                //object-fit: cover;
+                
+                h3{
+                    position: absolute;
+                    font-size: 1vw; // previously 20px
+                }
+                img{
+                    width: 100%;
+                    height: 100%;
+                    z-index: 1;
+                    overflow-y: hidden;
+                    display: unset;
+                    justify-content: unset;
+                    align-items: unset;
+                    margin-bottom: 5%
+                }
+
+                &:hover{
+                    background-color: lightcoral; // main colour
+                    img{
+                        opacity: 0.2;
+                        z-index: 0;
+                    }
+                }
+            }
+
+        }
+    }
+}
