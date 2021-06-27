@@ -6,7 +6,7 @@ import Paper from "@material-ui/core/Paper";
 import Savings from "./Savings";
 import Allowance from "./Allowance";
 import Interest from "./Interest";
-import Orders from "./Orders";
+import AchievementsProgress from "./AchievementsProgress";
 import { validateSession_id, getAmazonData } from "../../requests";
 
 const drawerWidth = 240;
@@ -117,10 +117,9 @@ export default function Dashboard_Content() {
           <Interest />
         </Paper>
       </Grid>
-      {/* Recent Orders */}
       <Grid item xs={12}>
         <Paper className={classes.paper}>
-          <Orders />
+          <AchievementsProgress />
         </Paper>
       </Grid>
     </Grid>
