@@ -4,11 +4,12 @@ const domain = 'http://localhost:3001';
 
 export async function validateSession_id() {
     const session_id = document.cookie.split('=')[1];
+    console.log(session_id)
 
     const res = await axios.post(`${domain}/validateSession_id`,{
         "session_id" : session_id
     })
-
+    console.log(res)
     const loggedIn = typeof res.data.err !== 'undefined';
 
     if (loggedIn) {
