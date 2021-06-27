@@ -16,12 +16,11 @@ const stop = 1
 
 
 export default function Marketplace() {
-
-  const load = validateSession_id()
-
-  const username = load.username
-  var money = load.money
-  const email = load.email
+  
+  var username = ""
+  var money = ""
+  var email = ""
+  validateSession_id().then((r) => {username = r.username; money = r.money; email = r.email; console.log("the final values are", username, email, money)})
 
   // initial use state submenu selected is "featured". setSelected is used to determine the page to take the user to, when selected
   const [selected, setSelected] = useState("featured");
@@ -156,6 +155,7 @@ export default function Marketplace() {
                                 </Button>
                                 <Button size="small" color="primary" 
                                     onClick={() => { 
+                                        console.log(money, data.price)
                                         if (money >= data.price) {
                                             purchaseProduct(data.name, data.price, data.image, data.link, data.ASIN, email)
                                         } else {
