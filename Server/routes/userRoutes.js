@@ -55,6 +55,7 @@ app.post("/signup", async (req, res) => {
 
 
 app.post("/editMoney", async (req, res) => {
+    console.log("we made it here")
     try {
         const users = await userModel.find({"session_id" : req.body.session_id});
         if (users.length == 0) {
@@ -64,6 +65,7 @@ app.post("/editMoney", async (req, res) => {
             userModel.findOneAndUpdate({"session_id" : req.body.session_id}, {"money" : newMoney}, function(err, doc) {
                 if (err) res.status(200).send({"error" : "Upload error"});
                 res.status(200).send("OK")
+                console.log("we made it here")
             }); 
         }
     } catch (err) {
@@ -72,16 +74,17 @@ app.post("/editMoney", async (req, res) => {
 });
 
 
-app.post("/editMoneyRedirect", async (req, res) => {
+app.get("/editMoneyRedirect", async (req, res) => {
+    console.log(req.body)
     try {
-        const users = await userModel.find({"email" : req.body.email});
+        const users = await userModel.find({"email" : req.query.email});
         if (users.length == 0) {
             res.status(200).send({"error" : "No account found using that email"});
         } else {
-            const newMoney = parseFloat(users[0].money) - parseFloat(req.body.money);
-            userModel.findOneAndUpdate({"email" : req.body.email}, {"money" : newMoney}, function(err, doc) {
+            const newMoney = parseFloat(users[0].money) - parseFloat(req.query.money);
+            userModel.findOneAndUpdate({"email" : req.query.email}, {"money" : newMoney}, function(err, doc) {
                 if (err) res.status(200).send({"error" : "Upload error"});
-                res.redirect(`https://www.amazon.com/gp/aws/cart/add.html?AssociateTag=your-tag&ASIN.1=${req.body.ASIN}&Quantity.1=1`)
+                res.redirect(`https://www.amazon.com/gp/aws/cart/add.html?AssociateTag=your-tag&ASIN.1=${req.query.ASIN}&Quantity.1=1`)
             }); 
         }
     } catch (err) {

@@ -55,13 +55,15 @@ export async function editMoney(money){
         "session_id" : session_id,
         "money" : money
     });
+    window.location.replace("/dashboard")
 }
 
 export async function editAllowance(allowance){
     const session_id = document.cookie.split('=')[1];
-    await axios.post(`${domain}/editAllowance`, {
+    await axios.post("http://localhost:3001/editAllowance", {
         "session_id" : session_id,
         "allowance" : allowance
     });
+    window.location.replace("/dashboard")
 }
 

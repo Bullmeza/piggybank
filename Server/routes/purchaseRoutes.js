@@ -30,8 +30,8 @@ app.get("/parentResponse", async (req, res) => {
     console.log(req.query)
     try {
         const purchases = await purchaseModel.find({email : req.query.email});
-
-        purchases.every(purchase => {
+        console.log(typeof purchases, Object.keys(purchases), purchases[0], purchases.length)
+        for (var purchase of purchases) {
             console.log(purchase._id, purchase.ASIN, req.query.ASIN)
             if (req.query.response == "Accept" && !sentRes && purchase.ASIN == req.query.ASIN){
                 sentRes = true;
@@ -40,13 +40,15 @@ app.get("/parentResponse", async (req, res) => {
                     console.log("Deleted")
                 });
                 res.redirect(`http://localhost:3001/editMoneyRedirect?email=${req.query.email}&ASIN=${req.query.ASIN}&money=${purchase.price}`)
+                break;
             } else if (purchase.ASIN == req.query.ASIN) {
                 purchaseModel.deleteOne({"_id" : purchase._id}, (err)=>{
                     if(err) console.log(err);
                     console.log("Deleted")
                 });
+                break
             }
-        });  
+        }  
 
         if(!sentRes){
             res.status(200).send("OK : Denied Purchase")

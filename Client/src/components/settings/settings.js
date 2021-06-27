@@ -12,11 +12,9 @@ function Settings() {
 
   const handleAddMoney = async () => {
     editMoney(money)
-    window.location.replace("/dashboard")
   }
   const handleAllowance = async () => {
     editAllowance(allowance)
-    window.location.replace("/dashboard")
   }
 
 
