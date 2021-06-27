@@ -67,19 +67,19 @@ export default function Marketplace() {
   const list = [
     {
       id: "0-10",
-      title: "$0- $10",
+      title: "$0 - $10",
     },
     {
       id: "10-25",
-      title: "$10- $25",
+      title: "$10 - $25",
     },
     {
       id: "25-50",
-      title: "$25- $50",
+      title: "$25 - $50",
     },
     {
       id: "50-100",
-      title: "$50- $100",
+      title: "$50 - $100",
     },
     {
       id: "100+",
@@ -132,24 +132,21 @@ export default function Marketplace() {
                 {data.map((data) => {
                     console.log(data.name, data.price, data.image, data.link, data.ASIN, email)
                     return (
-                        <Card style={{width: "30%", height: "40%"}}>
+                        <Card style={{width: "30%", minHeight: "65vh", maxHeight: "65vh", position: "relative"}}>
                             <CardActionArea>
                                 <CardMedia
                                     component="img"
-                                    style={{width: "100%", height: "auto"}}
+                                    style={{width: "100%", minHeight: "45vh", maxHeight: "45vh"}}
                                     src={data.image}
                                     title={data.name}
                                 />
                                 <CardContent>
                                 <Typography gutterBottom variant="h5" component="h2">
-                                    {data.name}
-                                </Typography>
-                                <Typography gutterBottom variant="h5" component="h5">
-                                    ${data.price}
+                                    {data.name} -- ${data.price}
                                 </Typography>
                                 </CardContent>
                             </CardActionArea>
-                            <CardActions>
+                            <CardActions style={{bottom: 8, position: "absolute"}}>
                                 <Button size="small" color="primary" onClick={() => window.open(data.link)}>
                                     View
                                 </Button>
