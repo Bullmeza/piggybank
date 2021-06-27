@@ -27,12 +27,11 @@ const LandingPage = () =>{
         <div className="landing" id="landing">
             <div className="left">
                 <div className="wrapper">
-                    <h2>Welcome to</h2>
                     <img src="assets/PiggyBank_Logo.png" alt="" />
                     <h3>Save up and buy <span ref={textRef}></span></h3>
                     <div className="buttons">
                         <Button variant="contained" color="primary" className="signUpButton" href="signup">Sign up</Button>
-                        <Button variant="outlined" href="login">Login In</Button>
+                        <Button variant="outlined" className="loginButton" href="login">Login In</Button>
                     </div>
                 </div>
                 
