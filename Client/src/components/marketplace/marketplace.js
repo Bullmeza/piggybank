@@ -155,6 +155,7 @@ export default function Marketplace() {
                                         console.log(money, data.price)
                                         if (money >= data.price) {
                                             purchaseProduct(data.name, data.price, data.image, data.link, data.ASIN, email)
+                                            alert("Purchased!")
                                         } else {
                                             alert("Not enough money to purchase")
                                         }
