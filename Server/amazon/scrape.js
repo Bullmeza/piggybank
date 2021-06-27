@@ -2,7 +2,6 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 const { FORMERR } = require('dns');
 const fs = require('fs');
-const { setTimeout } = require('timers');
 
 
 const scrapeAmazon = async () => {
@@ -17,12 +16,15 @@ const scrapeAmazon = async () => {
         })
         const $ = cheerio.load(response.data)
         var price = $("#price_inside_buybox").text();
+        if (price === "") {
+            price = $("#priceblock_ourprice").text();
+        }
         var image = $("#landingImage").attr('src')
         var ASIN = $('th:contains("ASIN") ~ ').text()
         console.log(price,ASIN)
         productData.push({
             "name" : link.name.trim(),
-            "price" : price.trim(),
+            "price" : parseFloat(price.trim().split("$")[1]),
             "image" : image.trim(),
             "link" : link.link.trim(),
             "ASIN" : ASIN.trim(),
