@@ -9,7 +9,10 @@ app.post("/validateSession_id",  async(req,res) => {
         if(users.length == 0){
             res.status(200).send({"error" : "No user found"});
         }else{
-            res.status(200).send({"username" : users[0].username, "money" : users[0].money, "email" : users[0].email});
+            res.status(200).send(
+                {"username" : users[0].username, "money" : users[0].money, 
+                "email" : users[0].email, "allowance" : users[0].allowance}
+            );
         }
     }catch(err){
         res.status(200).send({"error" : "Internal Error"});
@@ -82,10 +85,19 @@ app.post("/editMoneyRedirect", async (req, res) => {
             }); 
         }
     } catch (err) {
+    }
+})
+
+app.post("/editAllowance", async (req, res) => {
+    try{
+        userModel.findOneAndUpdate({"session_id" : req.body.session_id}, {"allowance" : req.body.allowance}, function(err, doc) {
+            if (err) res.status(200).send({"error" : "Upload error"});
+            res.status(200).send("OK")
+        }); 
+    }catch(err){
         res.status(200).send({"error" : "Internal error"});
     }
 });
-
 
 app.get("/getAllUsers", async (req, res) => {
     try {

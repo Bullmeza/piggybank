@@ -49,4 +49,19 @@ export async function purchaseProduct(name,price,image,link,asin,email){
     })   
 }
 
+export async function editMoney(money){
+    const session_id = document.cookie.split('=')[1];
+    await axios.post(`${domain}/editMoney`, {
+        "session_id" : session_id,
+        "money" : money
+    });
+}
+
+export async function editAllowance(allowance){
+    const session_id = document.cookie.split('=')[1];
+    await axios.post(`${domain}/editAllowance`, {
+        "session_id" : session_id,
+        "allowance" : allowance
+    });
+}
 
