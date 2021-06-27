@@ -1,6 +1,7 @@
 import axios from "axios";
 const domain = 'http://localhost:3001';
 
+
 export async function validateSession_id() {
     const session_id = document.cookie.split('=')[1];
 
@@ -11,16 +12,20 @@ export async function validateSession_id() {
     const loggedIn = typeof res.data.err !== 'undefined';
 
     if (loggedIn) {
-        return {username: res.data.username, money: res.data.money}
+        return {username: res.data.username, money: res.data.money, email: res.data.email}
     } else {
-        window.location.replace("/");
+        const path = window.location.pathname;
+        if(path !== "/" && path !== "/login" && path !== "/signup"){
+            window.location.replace("/");
+        }
     }
 }
 
 
 export async function getAmazonData() {
-    const res = await axios.post(`${domain}/getData`, {})
-    return res
+    const res = await axios.get(`http://localhost:3001/getData`, {})
+    console.log(res.data)
+    return res.data
 }
 
 

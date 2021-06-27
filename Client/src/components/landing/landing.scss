@@ -1,0 +1,122 @@
+.landing {
+  background-color: white;
+  display: flex;
+  overflow: hidden;
+  height: 100%;
+  bottom: 0;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10vh;
+  margin-left: 5vw;
+
+  .left {
+    flex: 0.4; // right side will take up other 50% of width
+    position: relative; // since the arrow will be absolute in it's position, the parent element must be relative
+
+    .wrapper {
+      width: 100%;
+      height: 100%;
+      padding-left: 50px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      img {
+        height: 20vh;
+
+        width: 90%;
+        font-size: 6vw; // previously 100px
+
+        // margin is 10px from top/bottom and 0 from left/right
+        margin: 0px 0; // sets margin between other text
+      }
+      h2 {
+        font-size: 3vw; // previously 45px
+      }
+      h3 {
+        padding-top: 20px;
+        font-size: 2vw; // previously 40px
+
+        span {
+          // inherit 30px from h3 above
+          font-size: inherit;
+          color: rgb(187, 2, 54); // theme colour Enghack
+        }
+
+        // makes the typing cursor blink. otherwise it would be static like: "|"
+        .ityped-cursor {
+          animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+          // i.e. when the time is at 50%, 0.5 seconds, do not fade the typing cursor yet. Start fading after 0.5 seconds
+          50% {
+            opacity: 1;
+          }
+          // every time the animation reaches 100%, at 1s, make the opacity 0, i.e. invisible
+          100% {
+            opacity: 0;
+          }
+        }
+      }
+    }
+
+    .buttons {
+      margin-top: 5vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .signUpButton {
+        margin: 40px;
+        background-color: rgb(187, 2, 54);
+        color: white;
+
+        height: 100px;
+        width: 200px;
+        border-radius: 10px;
+        font-size: xx-large;
+        font-weight: 600;
+      }
+      .loginButton {
+        margin: 40px;
+        background-color: rgb(255, 77, 127);
+        color: white;
+
+        height: 100px;
+        width: 200px;
+        border-radius: 10px;
+        font-size: xx-large;
+        font-weight: 600;
+      }
+    }
+  }
+  .right {
+    //HERE
+    flex: 0.6; // left side will take up 50% of width
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .imgContainer {
+      padding-top: 30px;
+      width: 75%; // changed from 1100px
+      height: 50%; // changed from 1100px
+      background-color: rgb(187, 2, 54); // theme colour enghack
+      border-radius: 50%; // makes the sphere around image
+      display: flex;
+
+      // makes the Ishan Baliyan person image go to the bottom.i.e. the bottom of the image goes till the radius bottom of the circle
+      align-items: flex-end;
+
+      justify-content: center;
+      float: right;
+
+      img {
+        height: auto;
+        width: 150%;
+      }
+    }
+  }
+}
