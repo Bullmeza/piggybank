@@ -148,7 +148,7 @@ export default function Marketplace() {
                                 </CardContent>
                             </CardActionArea>
                             <CardActions>
-                                <Button size="small" color="primary" onClick={() => window.location.replace(data.link)}>
+                                <Button size="small" color="primary" onClick={() => window.open(data.link)}>
                                     View
                                 </Button>
                                 <Button size="small" color="primary" onClick={() => purchaseProduct(data.name, data.price, data.image, data.link, data.ASIN, email)}>
