@@ -145,6 +145,9 @@ export default function Marketplace() {
                                 <Typography gutterBottom variant="h5" component="h2">
                                     {data.name}
                                 </Typography>
+                                <Typography gutterBottom variant="h5" component="h5">
+                                    ${data.price}
+                                </Typography>
                                 </CardContent>
                             </CardActionArea>
                             <CardActions>
