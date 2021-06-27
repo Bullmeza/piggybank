@@ -31,7 +31,7 @@ const LandingPage = () =>{
                     <h3>Save up and buy <span ref={textRef}></span></h3>
                     <div className="buttons">
                         <Button variant="contained" color="primary" className="signUpButton" href="signup">Sign up</Button>
-                        <Button variant="outlined" className="loginButton" href="login">Login In</Button>
+                        <Button variant="outlined" className="loginButton" href="login">Login</Button>
                     </div>
                 </div>
                 
