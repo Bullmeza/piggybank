@@ -94,6 +94,7 @@ export default function Dashboard_Content() {
   const load = validateSession_id()
 
   const username = load.username
+  const email = load.email
   var money = load.money
 
   const classes = useStyles();

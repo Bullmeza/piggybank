@@ -8,6 +8,7 @@ import PeopleIcon from '@material-ui/icons/People';
 import SettingsIcon from '@material-ui/icons/Settings';
 import HourglassEmptyIcon from '@material-ui/icons/HourglassEmpty';
 
+
 export const mainListItems = (
   <div>
     <ListItem button component="a" href="/dashboard">
@@ -43,7 +44,7 @@ export const secondaryListItems = (
       <ListItemIcon>
         <PeopleIcon />
       </ListItemIcon>
-      <ListItemText primary="Logout" />
+      <ListItemText onClick={() => document.cookie = ""} primary="Logout" />
     </ListItem>
   </div>
 );

@@ -11,6 +11,7 @@ export default function Marketplace() {
   const load = validateSession_id()
 
   const username = load.username
+  const email = load.email
   var money = load.money
 
   // initial use state submenu selected is "featured". setSelected is used to determine the page to take the user to, when selected
