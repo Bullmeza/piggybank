@@ -18,7 +18,7 @@
     }
 
     .container{
-        width: 70%;
+        width: 100%;
         display: flex;
         align-items: center;
         justify-content: center; // even spacing
@@ -27,7 +27,7 @@
         .item{
             // width: 220px; suggested sizing
             // height: 150px; suggested sizing
-            width:25%; // previously 400px
+            width:30%; // previously 400px
             height: 40%; // previously 290px
             overflow-y: hidden; // personally added this as this removed the scroll bars
             border-radius: 20px;
@@ -61,6 +61,7 @@
                     display: unset;
                     justify-content: unset;
                     align-items: unset;
+                    margin-bottom: 5%
                 }
 
                 &:hover{
