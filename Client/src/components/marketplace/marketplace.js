@@ -8,10 +8,10 @@ const stop = 1
 
 export default function Marketplace() {
 
-  /*const load = validateSession_id()
+  const load = validateSession_id()
 
   const username = load.username
-  var money = load.money*/
+  var money = load.money
 
   // initial use state submenu selected is "featured". setSelected is used to determine the page to take the user to, when selected
   const [selected, setSelected] = useState("featured");

@@ -89,6 +89,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Dashboard_Content() {
+
+  const load = validateSession_id()
+
+  const username = load.username
+  var money = load.money
+
   const classes = useStyles();
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 

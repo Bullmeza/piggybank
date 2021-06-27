@@ -6,6 +6,11 @@ import Button from "@material-ui/core/Button";
 import SaveIcon from "@material-ui/icons/Save";
 
 function Settings() {
+  const load = validateSession_id()
+
+  const username = load.username
+  var money = load.money
+  
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
