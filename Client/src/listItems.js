@@ -44,7 +44,7 @@ export const secondaryListItems = (
       <ListItemIcon>
         <PeopleIcon />
       </ListItemIcon>
-      <ListItemText onClick={() => document.cookie = ""} primary="Logout" />
+      <ListItemText onClick={() => { document.cookie = ""; window.location.replace("/")} } primary="Logout" />
     </ListItem>
   </div>
 );
