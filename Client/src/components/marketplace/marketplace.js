@@ -113,7 +113,7 @@ export default function Marketplace() {
 
   if (typeof data !== "undefined") {
     return (
-        <div className="marketplace" id="marketplace" style={{overflow: "scroll"}}>
+        <div className="marketplace" id="marketplace" style={{overflow: "visible"}}>
             <ul>
                 {/* goes through EACH title (e.g. featured, mobile, web, etc...) and shows all the titles for submenu in Projects section.*/}
                 {list.map((item) => (
