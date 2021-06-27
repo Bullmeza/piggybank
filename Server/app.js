@@ -21,7 +21,7 @@ app.use(require("./routes/userRoutes"))
 app.use(require("./routes/purchaseRoutes"))
 app.use(require("./amazon/market_data"))
 
-require("./amazon/scrape.js")();
+// require("./amazon/scrape.js")(); //BE CAREFUL
 
 const mongoose = require("mongoose");
 mongoose.connect(

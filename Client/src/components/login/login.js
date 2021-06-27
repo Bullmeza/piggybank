@@ -68,10 +68,7 @@ function Login() {
       .post(`http://localhost:3001/login`, { email: email, password: password }) //this link needs to be changed
       .then((res) => {
         document.cookie = "session_id=" + res.data.session_id;
-<<<<<<< HEAD
         window.location.replace("/dashboard");
-=======
->>>>>>> fcbe27545e668087d0258e287cc4f8020a1a3b1b
       });
   };
 
