@@ -65,7 +65,7 @@ export default function SignUp() {
   const handleSignUp = () => {
     if (password === confPassword) {
       axios
-        .post(`http://localhost:3001/signup`, {
+        .post(`https://piggybankserver.herokuapp.com/signup`, {
           username: username,
           email: email,
           password: password,
