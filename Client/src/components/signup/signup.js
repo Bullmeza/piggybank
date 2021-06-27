@@ -56,8 +56,6 @@ export default function SignUp() {
       loggedIn = true;
   }
 
-  console.log(loggedIn)
-
   if (loggedIn) {
     window.location.replace("/dashboard");
   }
