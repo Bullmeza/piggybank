@@ -4,30 +4,33 @@ import Typography from "@material-ui/core/Typography";
 import Title from "./Title";
 
 const useStyles = makeStyles({
-  savingsContext: {
+  allowanceContext: {
     flex: 1,
   },
 });
 
-const savings = 123.45;
+const allowance = 12.34;
 const date = "June 27, 2021";
 
-function Savings() {
+function Allowance() {
   const classes = useStyles();
   return (
     <React.Fragment>
-      <Title>Your Savings</Title>
+      <Title>Allowance</Title>
       <br />
-      <Typography component="p" variant="h3">
-        {"$" + savings}
-      </Typography>
+      <div>
+        <Typography component="span" variant="h3">
+          {"$" + allowance}
+        </Typography>
+        <span>/month</span>
+      </div>
       <br />
       <br />
-      <Typography color="textSecondary" className={classes.savingsContext}>
+      <Typography color="textSecondary" className={classes.allowanceContext}>
         {"Last change on " + date}
       </Typography>
     </React.Fragment>
   );
 }
 
-export default Savings;
+export default Allowance;
