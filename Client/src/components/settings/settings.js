@@ -4,14 +4,19 @@ import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import SaveIcon from "@material-ui/icons/Save";
-import { validateSession_id, getAmazonData } from "../../requests";
+import {editMoney, editAllowance} from "../../requests"
 
 function Settings() {
-  const load = validateSession_id()
+  const [money, setMoney] = React.useState();
+  const [allowance, setAllowance] = React.useState();
 
-  const username = load.username
-  const email = load.email
-  var money = load.money
+  const handleAddMoney = async () => {
+    editMoney(money)
+  }
+  const handleAllowance = async () => {
+    editAllowance(allowance)
+  }
+
 
   return (
     <React.Fragment>
@@ -27,11 +32,12 @@ function Settings() {
             fullWidth
             autoComplete="add-money"
             type="number"
+            onChange={(e) => setMoney(e.target.value)}
           />
         </Grid>
       </Grid>
       <br />
-      <Button variant="contained" color="primary" startIcon={<SaveIcon />}>
+      <Button variant="contained" color="primary" startIcon={<SaveIcon />} onClick={handleAddMoney}>
         Save
       </Button>
       <br />
@@ -40,7 +46,7 @@ function Settings() {
       <br />
       <br />
       <Typography variant="h6" gutterBottom>
-        Set allowance
+        Set allowance per month
       </Typography>
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6}>
@@ -51,11 +57,12 @@ function Settings() {
             fullWidth
             autoComplete="add-money"
             type="number"
+            onChange={(e) => setAllowance(e.target.value)}
           />
         </Grid>
       </Grid>
       <br />
-      <Button variant="contained" color="primary" startIcon={<SaveIcon />}>
+      <Button variant="contained" color="primary" startIcon={<SaveIcon />} onClick={handleAllowance}>
         Save
       </Button>
     </React.Fragment>

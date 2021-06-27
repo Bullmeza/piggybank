@@ -16,12 +16,11 @@ const stop = 1
 
 
 export default function Marketplace() {
-
-  const load = validateSession_id()
-
-  const username = load.username
-  var money = load.money
-  const email = "abhijain1778@gmail.com" //load.email
+  
+  var username = ""
+  var money = ""
+  var email = ""
+  validateSession_id().then((r) => {username = r.username; money = r.money; email = r.email; console.log("the final values are", username, email, money)})
 
   // initial use state submenu selected is "featured". setSelected is used to determine the page to take the user to, when selected
   const [selected, setSelected] = useState("featured");
@@ -131,6 +130,7 @@ export default function Marketplace() {
             <div className="container" style={{minHeight: "100vh", overflow: "visible"}}>
                 {/* shows all item images and titles for the current chosen submenu (e.g. featured, mobile, web, etc...). setData is used in useEffect() to change the shown data (projects) */}
                 {data.map((data) => {
+                    console.log(data.name, data.price, data.image, data.link, data.ASIN, email)
                     return (
                         <Card style={{width: "30%", height: "40%"}}>
                             <CardActionArea>
@@ -144,13 +144,24 @@ export default function Marketplace() {
                                 <Typography gutterBottom variant="h5" component="h2">
                                     {data.name}
                                 </Typography>
+                                <Typography gutterBottom variant="h5" component="h5">
+                                    ${data.price}
+                                </Typography>
                                 </CardContent>
                             </CardActionArea>
                             <CardActions>
-                                <Button size="small" color="primary" onClick={() => window.location.replace(data.link)}>
+                                <Button size="small" color="primary" onClick={() => window.open(data.link)}>
                                     View
                                 </Button>
-                                <Button size="small" color="primary" onClick={() => purchaseProduct(data.name, data.price, data.image, data.link, data.ASIN, email)}>
+                                <Button size="small" color="primary" 
+                                    onClick={() => { 
+                                        console.log(money, data.price)
+                                        if (money >= data.price) {
+                                            purchaseProduct(data.name, data.price, data.image, data.link, data.ASIN, email)
+                                        } else {
+                                            alert("Not enough money to purchase")
+                                        }
+                                    }}>
                                    Buy
                                 </Button>
                             </CardActions>

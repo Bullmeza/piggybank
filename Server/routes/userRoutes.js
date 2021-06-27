@@ -9,7 +9,10 @@ app.post("/validateSession_id",  async(req,res) => {
         if(users.length == 0){
             res.status(200).send({"error" : "No user found"});
         }else{
-            res.status(200).send({"username" : users[0].username, "money" : users[0].money, "email" : users[0].email});
+            res.status(200).send(
+                {"username" : users[0].username, "money" : users[0].money, 
+                "email" : users[0].email, "allowance" : users[0].allowance}
+            );
         }
     }catch(err){
         res.status(200).send({"error" : "Internal Error"});
@@ -19,6 +22,7 @@ app.post("/validateSession_id",  async(req,res) => {
 
 app.post("/login", async (req, res) => {
     try {
+        console.log("here")
         const users = await userModel.find({email: req.body.email});
         if (users.length == 0) {
             res.status(200).send({"error" : "No account found using that email"});
@@ -51,18 +55,49 @@ app.post("/signup", async (req, res) => {
 
 
 app.post("/editMoney", async (req, res) => {
+    console.log("we made it here")
     try {
         const users = await userModel.find({"session_id" : req.body.session_id});
         if (users.length == 0) {
             res.status(200).send({"error" : "No account found using that email"});
         } else {
-            const newMoney = parseInt(users[0].money) + parseInt(req.body.money);
+            const newMoney = parseFloat(users[0].money) + parseFloat(req.body.money);
             userModel.findOneAndUpdate({"session_id" : req.body.session_id}, {"money" : newMoney}, function(err, doc) {
                 if (err) res.status(200).send({"error" : "Upload error"});
                 res.status(200).send("OK")
+                console.log("we made it here")
             }); 
         }
     } catch (err) {
+        res.status(200).send({"error" : "Internal error"});
+    }
+});
+
+
+app.get("/editMoneyRedirect", async (req, res) => {
+    console.log(req.body)
+    try {
+        const users = await userModel.find({"email" : req.query.email});
+        if (users.length == 0) {
+            res.status(200).send({"error" : "No account found using that email"});
+        } else {
+            const newMoney = parseFloat(users[0].money) - parseFloat(req.query.money);
+            userModel.findOneAndUpdate({"email" : req.query.email}, {"money" : newMoney}, function(err, doc) {
+                if (err) res.status(200).send({"error" : "Upload error"});
+                res.redirect(`https://www.amazon.com/gp/aws/cart/add.html?AssociateTag=your-tag&ASIN.1=${req.query.ASIN}&Quantity.1=1`)
+            }); 
+        }
+    } catch (err) {
+    }
+})
+
+app.post("/editAllowance", async (req, res) => {
+    try{
+        userModel.findOneAndUpdate({"session_id" : req.body.session_id}, {"allowance" : req.body.allowance}, function(err, doc) {
+            if (err) res.status(200).send({"error" : "Upload error"});
+            res.status(200).send("OK")
+        }); 
+    }catch(err){
         res.status(200).send({"error" : "Internal error"});
     }
 });
