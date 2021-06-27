@@ -72,6 +72,7 @@ export default function SignUp() {
         })
         .then((res) => {
           document.cookie = "session_id=" + res.data.session_id;
+          window.location.replace("/dashboard");
         });
     } else {
       console.log("passwords don't match");
