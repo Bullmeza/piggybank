@@ -6,18 +6,22 @@ export async function validateSession_id() {
     const session_id = document.cookie.split('=')[1];
     console.log(session_id)
 
+    console.log(session_id)
+
     const res = await axios.post(`${domain}/validateSession_id`,{
         "session_id" : session_id
     })
-    console.log(res)
-    const loggedIn = typeof res.data.err !== 'undefined';
+
+    console.log(res.data)
+
+    const loggedIn = typeof res.data.error === 'undefined';
 
     if (loggedIn) {
         return {username: res.data.username, money: res.data.money, email: res.data.email}
     } else {
         const path = window.location.pathname;
         if(path !== "/" && path !== "/login" && path !== "/signup"){
-            window.location.replace("/");
+            window.location.replace("/login");
         }
     }
 }
