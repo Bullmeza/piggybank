@@ -12,7 +12,7 @@ const useStyles = makeStyles({
 const interest = 1.23;
 const date = "June 27, 2021";
 
-function Interest() {
+function Interest(props) {
   const classes = useStyles();
   return (
     <React.Fragment>
@@ -20,7 +20,7 @@ function Interest() {
       <br />
       <div>
         <Typography component="span" variant="h3">
-          {"$" + interest}
+          {"$" + props.interest.toFixed(2)}
         </Typography>
         <span>/month</span>
       </div>

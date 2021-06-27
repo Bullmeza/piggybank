@@ -12,7 +12,7 @@ const useStyles = makeStyles({
 const allowance = 12.34;
 const date = "June 27, 2021";
 
-function Allowance() {
+function Allowance(props) {
   const classes = useStyles();
   return (
     <React.Fragment>
@@ -20,7 +20,7 @@ function Allowance() {
       <br />
       <div>
         <Typography component="span" variant="h3">
-          {"$" + allowance}
+          {"$" + props.allowance.toFixed(2)}
         </Typography>
         <span>/month</span>
       </div>
