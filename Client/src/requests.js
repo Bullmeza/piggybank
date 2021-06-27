@@ -14,7 +14,10 @@ export async function validateSession_id() {
     if (loggedIn) {
         return {username: res.data.username, money: res.data.money, email: res.data.email}
     } else {
-        window.location.replace("/");
+        const path = window.location.pathname;
+        if(path !== "/" && path !== "/login" && path !== "/signup"){
+            window.location.replace("/");
+        }
     }
 }
 
