@@ -3,6 +3,7 @@ import { withStyles } from "@material-ui/core/styles";
 import { makeStyles } from "@material-ui/core/styles";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import Typography from "@material-ui/core/Typography";
+import Grid from "@material-ui/core/Grid";
 
 const StyledLinearProgress = withStyles({
   root: {
@@ -14,7 +15,6 @@ const StyledLinearProgress = withStyles({
     borderRadius: 9,
   },
 })(LinearProgress);
-const achievementsProgress = 56;
 
 const useStyles = makeStyles({
   allowanceContext: {
@@ -22,35 +22,44 @@ const useStyles = makeStyles({
   },
 });
 
+const achievementsProgress = 30;
+var achievementsCap;
+if (achievementsProgress < 10) {
+  achievementsCap = 10;
+} else if (achievementsProgress < 25) {
+  achievementsCap = 25;
+} else if (achievementsProgress < 50) {
+  achievementsCap = 50;
+} else if (achievementsProgress < 100) {
+  achievementsCap = 100;
+} else {
+  achievementsCap = 200;
+}
+
+function scaleProgress(progressToScale) {
+  console.log((100 * progressToScale) / achievementsCap);
+  return (100 * progressToScale) / achievementsCap;
+}
+
 function ProgressBar() {
   const classes = useStyles();
-  const [progress, setProgress] = React.useState(0);
-
-  React.useEffect(() => {
-    const timer = setInterval(() => {
-      setProgress((oldProgress) => {
-        if (oldProgress === achievementsProgress) {
-          return achievementsProgress;
-        }
-        const diff = Math.random() * 10;
-        return Math.min(oldProgress + diff, achievementsProgress);
-      });
-    }, 400);
-
-    return () => {
-      clearInterval(timer);
-    };
-  }, []);
-
   return (
     <div>
-      <StyledLinearProgress variant="determinate" value={progress} />
+      <StyledLinearProgress
+        variant="determinate"
+        value={scaleProgress(achievementsProgress)}
+      />
+      <Grid container justify="space-between">
+        <Grid item>$0</Grid>
+        <Grid item>{"$" + achievementsCap}</Grid>
+      </Grid>
+
       <br />
       <br />
       <Typography color="textSecondary" className={classes.allowanceContext}>
-        {"You have completed " +
-          achievementsProgress +
-          "% of the achievements!"}
+        {"You are " +
+          scaleProgress(achievementsProgress) +
+          "% of the way there to achieve the next tier of products!"}
       </Typography>
     </div>
   );
