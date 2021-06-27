@@ -16,7 +16,7 @@ export async function validateSession_id() {
 
     if (loggedIn) {
         console.log("validation brought us here")
-        return {username: res.data.username, money: res.data.money, email: res.data.email}
+        return {username: res.data.username, money: res.data.money, email: res.data.email, allowance: res.data.allowance}
     } else {
         const path = window.location.pathname;
         if(path !== "/" && path !== "/login" && path !== "/signup"){

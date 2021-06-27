@@ -9,6 +9,7 @@ import Interest from "./Interest";
 import AchievementsProgress from "./AchievementsProgress";
 import Badges from "./Badges"
 import { validateSession_id, getAmazonData } from "../../requests";
+import { useState } from "react";
 
 const drawerWidth = 240;
 
@@ -92,11 +93,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Dashboard_Content() {
-  const load = validateSession_id();
-
-  const username = load.username;
-  const email = load.email;
-  var money = load.money;
+  const [username, setUsername] = useState("")
+  const [money, setMoney] = useState(0)
+  const [email, setEmail] = useState("")
+  const [allowance, setAllowance] = useState(0)
+  validateSession_id().then((r) => {setUsername(r.username); setMoney(r.money); setEmail(r.email); setAllowance(r.allowance); console.log("the final values are", username, email, money)})
 
   const classes = useStyles();
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
@@ -105,22 +106,22 @@ export default function Dashboard_Content() {
     <Grid container spacing={3}>
       <Grid item xs={12} md={8} lg={6}>
         <Paper className={fixedHeightPaper}>
-          <Savings />
+          <Savings pesos={money}/>
         </Paper>
       </Grid>
       <Grid item xs={12} md={4} lg={3}>
         <Paper className={fixedHeightPaper}>
-          <Allowance />
+          <Allowance allowance={allowance}/>
         </Paper>
       </Grid>
       <Grid item xs={12} md={4} lg={3}>
         <Paper className={fixedHeightPaper}>
-          <Interest />
+          <Interest interest={0.02 * money}/>
         </Paper>
       </Grid>
       <Grid item xs={12}>
         <Paper className={classes.paper}>
-          <AchievementsProgress />
+          <AchievementsProgress progress={money}/>
         </Paper>
       </Grid>
       <Grid item xs={12}>
