@@ -14,6 +14,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import LoginImage from "../../images/Login_Image.jpg";
 import axios from "axios";
+import { Redirect, Route } from "react-router-dom"
 
 function Copyright() {
   return (
@@ -62,21 +63,34 @@ function Login() {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
 
+  const cookie = document.cookie;
+  var loggedIn = false;
+
+  if (cookie.includes("session_id")) {
+      loggedIn = true;
+  }
+
+  console.log(loggedIn)
+
+  if (loggedIn) {
+    window.location.replace("/dashboard");
+  }
+
   const handleLogin = () => {
     console.log(email, password);
     axios
       .post(`http://localhost:3001/login`, { email: email, password: password }) //this link needs to be changed
       .then((res) => {
         document.cookie = "session_id=" + res.data.session_id;
-<<<<<<< HEAD
         window.location.replace("/dashboard");
-=======
->>>>>>> fcbe27545e668087d0258e287cc4f8020a1a3b1b
       });
   };
 
   return (
     <Grid container component="main" className={classes.root}>
+      <Route exact path="/">
+        {loggedIn ? <Redirect to="/dashboard" /> : this}
+      </Route>
       <CssBaseline />
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>

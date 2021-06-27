@@ -49,6 +49,19 @@ export default function SignUp() {
   const [password, setPassword] = React.useState("");
   const [confPassword, setConfPassword] = React.useState("");
 
+  const cookie = document.cookie;
+  var loggedIn = false;
+
+  if (cookie.includes("session_id")) {
+      loggedIn = true;
+  }
+
+  console.log(loggedIn)
+
+  if (loggedIn) {
+    window.location.replace("/dashboard");
+  }
+
   const handleSignUp = () => {
     if (password === confPassword) {
       axios
