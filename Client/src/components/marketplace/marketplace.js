@@ -132,7 +132,7 @@ export default function Marketplace() {
                 {data.map((data) => {
                     console.log(data.name, data.price, data.image, data.link, data.ASIN, email)
                     return (
-                        <Card style={{width: "30%", minHeight: "65vh", maxHeight: "65vh", position: "relative"}}>
+                        <Card style={{width: "30%", minHeight: "65vh", maxHeight: "65vh", position: "relative", margin: "20px"}}>
                             <CardActionArea>
                                 <CardMedia
                                     component="img"
