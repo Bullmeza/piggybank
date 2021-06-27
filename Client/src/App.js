@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, useLocation } from "react-router-dom";
 import Login from "./components/login/login";
 import SignUp from "./components/signup/signup";
 import Marketplace from "./components/marketplace/marketplace";
@@ -21,9 +21,11 @@ import Container from "@material-ui/core/Container";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import { mainListItems, secondaryListItems } from "./listItems";
+import Logo from "./images/PiggyBank_Logo.png"
 
 function App() {
   const classes = useStyles();
+  const location = useLocation();
   const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -31,6 +33,7 @@ function App() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
 
   return (
     <div className="extendPage">
@@ -66,7 +69,7 @@ function App() {
                 noWrap
                 className={classes.title}
               >
-                Home
+                {location.pathname.charAt(1).toUpperCase()+location.pathname.slice(2)}
               </Typography>
             </Toolbar>
           </AppBar>
@@ -81,8 +84,9 @@ function App() {
             open={open}
           >
             <div className={classes.toolbarIcon}>
-              <IconButton onClick={handleDrawerClose}>
-                <ChevronLeftIcon />
+              <IconButton onClick={handleDrawerClose} style={{dispay: "flex", justifyContent: "center", alignItems: "center"}}>
+                <img src={Logo} style={{width: "170px", marginRight: "8px", marginTop: "-10px"}}/>
+                <ChevronLeftIcon style={{marginRight: "-10px"}}/>
               </IconButton>
             </div>
             <Divider />
@@ -114,6 +118,7 @@ const useStyles = makeStyles((theme) => ({
   },
   toolbar: {
     paddingRight: 24, // keep right padding when drawer closed
+    backgroundColor: "#bb0236"
   },
   toolbarIcon: {
     display: "flex",
@@ -145,6 +150,7 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
+    fontSize: "1.5em",
   },
   drawerPaper: {
     position: "relative",

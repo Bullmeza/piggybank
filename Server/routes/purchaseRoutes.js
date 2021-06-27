@@ -250,7 +250,7 @@ const sendMail = async({name,price,image,link,ASIN,email}) => {
         <tr>
           <td style="padding-right: 0px;padding-left: 0px;" align="center">
             
-            <img align="center" border="0" src="images/image-1.png" alt="Image" title="Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 29%;max-width: 168.2px;" width="168.2"/>
+            <img align="center" border="0" src="https://cdn.discordapp.com/attachments/855857780388397056/858480810637131806/LogoMakr-0m6x11.png" alt="Image" title="Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 29%;max-width: 168.2px;" width="168.2"/>
             
           </td>
         </tr>
