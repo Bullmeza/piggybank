@@ -22,27 +22,28 @@ const useStyles = makeStyles({
   },
 });
 
-const achievementsProgress = 30;
 var achievementsCap;
-if (achievementsProgress < 10) {
-  achievementsCap = 10;
-} else if (achievementsProgress < 25) {
-  achievementsCap = 25;
-} else if (achievementsProgress < 50) {
-  achievementsCap = 50;
-} else if (achievementsProgress < 100) {
-  achievementsCap = 100;
-} else {
-  achievementsCap = 200;
-}
+
 
 function scaleProgress(progressToScale) {
   console.log((100 * progressToScale) / achievementsCap);
   return (100 * progressToScale) / achievementsCap;
 }
 
-function ProgressBar() {
+function ProgressBar(props) {
   const classes = useStyles();
+  const achievementsProgress = props.progress;
+  if (achievementsProgress < 10) {
+    achievementsCap = 10;
+  } else if (achievementsProgress < 25) {
+    achievementsCap = 25;
+  } else if (achievementsProgress < 50) {
+    achievementsCap = 50;
+  } else if (achievementsProgress < 100) {
+    achievementsCap = 100;
+  } else {
+    achievementsCap = 200;
+  }
   return (
     <div>
       <StyledLinearProgress
@@ -58,7 +59,7 @@ function ProgressBar() {
       <br />
       <Typography color="textSecondary" className={classes.allowanceContext}>
         {"You are " +
-          scaleProgress(achievementsProgress) +
+          scaleProgress(achievementsProgress).toFixed(2) +
           "% of the way there to achieve the next tier of products!"}
       </Typography>
     </div>

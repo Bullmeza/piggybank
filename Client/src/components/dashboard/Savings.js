@@ -12,14 +12,14 @@ const useStyles = makeStyles({
 const savings = 123.45;
 const date = "June 27, 2021";
 
-function Savings() {
+function Savings(props) {
   const classes = useStyles();
   return (
     <React.Fragment>
       <Title>Your Savings</Title>
       <br />
       <Typography component="p" variant="h3">
-        {"$" + savings}
+        {"$" + props.pesos.toFixed(2)}
       </Typography>
       <br />
       <br />

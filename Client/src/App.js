@@ -42,7 +42,7 @@ function App() {
     console.log(res)
     try {
       setName(res.username)
-      setMoney(res.money)
+      setMoney(res.money.toFixed(2))
     } catch {
       console.log("")
     }
