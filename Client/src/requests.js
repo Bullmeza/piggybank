@@ -21,6 +21,7 @@ export async function validateSession_id() {
     } else {
         const path = window.location.pathname;
         if(path !== "/" && path !== "/login" && path !== "/signup"){
+            document.cookie = "session_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
             window.location.replace("/login");
         }
     }

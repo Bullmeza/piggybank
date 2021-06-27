@@ -39,7 +39,11 @@ function App() {
   useEffect( async ()=>{
     const res = await validateSession_id();
     console.log(res)
-    // setName(res.username)
+    try {
+      setName(res.username)
+    } catch {
+      console.log("")
+    }
   });
 
 
