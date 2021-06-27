@@ -29,6 +29,7 @@ function App() {
   const location = useLocation();
   const [open, setOpen] = React.useState(true);
   const [name, setName] = React.useState("Loading")
+  const [money, setMoney] = React.useState("Loading")
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -41,6 +42,7 @@ function App() {
     console.log(res)
     try {
       setName(res.username)
+      setMoney(res.money)
     } catch {
       console.log("")
     }
@@ -102,7 +104,7 @@ function App() {
               </IconButton>
             </div>
             <Divider />
-            <List>{mainListItems(name)}</List>
+            <List>{mainListItems(name, money)}</List>
             <Divider />
             <List>{secondaryListItems}</List>
           </Drawer>

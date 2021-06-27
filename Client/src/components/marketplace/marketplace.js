@@ -151,7 +151,14 @@ export default function Marketplace() {
                                 <Button size="small" color="primary" onClick={() => window.open(data.link)}>
                                     View
                                 </Button>
-                                <Button size="small" color="primary" onClick={() => purchaseProduct(data.name, data.price, data.image, data.link, data.ASIN, email)}>
+                                <Button size="small" color="primary" 
+                                    onClick={() => { 
+                                        if (money >= data.price) {
+                                            purchaseProduct(data.name, data.price, data.image, data.link, data.ASIN, email)
+                                        } else {
+                                            alert("Not enough money to purchase")
+                                        }
+                                    }}>
                                    Buy
                                 </Button>
                             </CardActions>

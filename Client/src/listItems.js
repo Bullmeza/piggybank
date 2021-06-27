@@ -8,9 +8,10 @@ import PeopleIcon from '@material-ui/icons/Person';
 import SettingsIcon from '@material-ui/icons/Settings';
 import HourglassEmptyIcon from '@material-ui/icons/HourglassEmpty';
 import MoodIcon from '@material-ui/icons/Mood';
+import AttachMoney from '@material-ui/icons/AttachMoney';
 
 
-export const mainListItems = (name) =>{
+export const mainListItems = (name, money) =>{
   return (
     <div>
     <ListItem>
@@ -18,6 +19,12 @@ export const mainListItems = (name) =>{
         <MoodIcon/>
       </ListItemIcon>
       <ListItemText primary={name}/>
+    </ListItem>
+    <ListItem>
+      <ListItemIcon>
+        <AttachMoney />
+      </ListItemIcon>
+      <ListItemText primary={money}/>
     </ListItem>
   </div>
   );
