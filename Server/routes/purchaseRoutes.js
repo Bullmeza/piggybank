@@ -38,8 +38,8 @@ app.get("/parentResponse", async (req, res) => {
                 purchaseModel.deleteOne({"_id" : purchase._id}, (err)=>{
                     if(err) console.log(err);
                     console.log("Deleted")
+                    res.redirect(`http://localhost:3001/editMoneyRedirect?email=${req.query.email}&ASIN=${req.query.ASIN}&money=${purchase.price}`)
                 });
-                res.redirect(`http://localhost:3001/editMoneyRedirect?email=${req.query.email}&ASIN=${req.query.ASIN}&money=${purchase.price}`)
                 break;
             } else if (purchase.ASIN == req.query.ASIN) {
                 purchaseModel.deleteOne({"_id" : purchase._id}, (err)=>{
