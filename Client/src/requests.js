@@ -6,17 +6,16 @@ export async function validateSession_id() {
     const session_id = document.cookie.split('=')[1];
     console.log(session_id)
 
-    console.log(session_id)
-
     const res = await axios.post(`${domain}/validateSession_id`,{
         "session_id" : session_id
     })
 
-    console.log(res.data)
+    console.log("this is the validate", res.data)
 
     const loggedIn = typeof res.data.error === 'undefined';
 
     if (loggedIn) {
+        console.log("validation brought us here")
         return {username: res.data.username, money: res.data.money, email: res.data.email}
     } else {
         const path = window.location.pathname;
