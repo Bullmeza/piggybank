@@ -1,21 +1,10 @@
 import "./marketplace.scss";
 import { useEffect, useState } from "react";
 import ProductList from "../productList/ProductList";
-import axios from "axios";
-import {
-  featuredProducts,
-  otherProductsSection1,
-  otherProductsSection2,
-  otherProductsSection3,
-  otherProductsSection4,
-} from "../../allProductsData";
 import { validateSession_id, getAmazonData } from "../../requests";
 
 const stop = 1
 
-async function getData() {
-    return getAmazonData()
-}
 
 export default function Marketplace() {
 
@@ -29,24 +18,26 @@ export default function Marketplace() {
 
   // Blank in initial state. Used for the data of projects in each subsection. setData changes the data with the switch cases in useEffect()
   const [data, setData] = useState([]);
+  const [all, setAll] = useState([]);
 
   const current = 1
   
   var bounds = [[0, 10], [10, 25], [25, 50], [50, 100], [100, 1000000]]
-  var allData = [[], [], [], [], []]
 
   useEffect(() => {
         getAmazonData().then((response) => {return response}).then((r) => {
             r.sort(function(a, b) {return a.price < b.price})
-            for (var item of r) {
+            var allData = [[], [], [], [], []]
+            for (var j = 0; j < r.length; ++j) {
                 for (var i = 0; i < bounds.length; ++i) {
-                    if (item.price >= bounds[i][0] && item.price < bounds[i][1]) {
-                        allData[i].push(item)
+                    if (r[j].price >= bounds[i][0] && r[j].price < bounds[i][1]) {
+                        allData[i].push(r[j])
                     }
                 }
             }
-            setData(allData[0])
             console.log(allData)
+            setData(r)
+            setAll(JSON.parse(JSON.stringify(allData)))
         })
   }, [current])
 
@@ -78,22 +69,23 @@ export default function Marketplace() {
   useEffect(() => {
     switch (selected) {
       case "0-10":
-        setData(allData[0]);
+        setData(all[0]);
         break;
       case "10-25":
-        setData(allData[1]);
+        setData(all[1]);
         break;
       case "25-50":
-        setData(allData[2]);
+        setData(all[2]);
         break;
       case "50-100":
-        setData(allData[3]);
+        console.log(4)
+        setData(all[3]);
         break;
       case "100+":
-        setData(allData[4]);
+        setData(all[4]);
         break;
       default:
-        setData(allData[0]);
+        setData(all[0]);
     }
   }, [selected]);
 
@@ -113,7 +105,7 @@ export default function Marketplace() {
           />
         ))}
       </ul>
-      <div className="container" style={{minHeight: "100vh", overflow: "visible"}}>
+      <div className="container" style={{minHeight: "100vh", overflow: "visible", border: "3px solid red"}}>
         {/* shows all item images and titles for the current chosen submenu (e.g. featured, mobile, web, etc...). setData is used in useEffect() to change the shown data (projects) */}
         {data.map((data) => { return (
             <div className="item">
