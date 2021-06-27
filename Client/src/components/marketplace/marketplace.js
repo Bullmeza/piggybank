@@ -1,75 +1,97 @@
 import "./marketplace.scss";
 import { useEffect, useState } from "react";
 import ProductList from "../productList/ProductList";
-import axios from "axios";
-import {
-  featuredProducts,
-  otherProductsSection1,
-  otherProductsSection2,
-  otherProductsSection3,
-  otherProductsSection4,
-} from "../../allProductsData";
-import { getAmazonData } from "../../requests";
+import { validateSession_id, getAmazonData } from "../../requests";
+
+const stop = 1
+
 
 export default function Marketplace() {
-  
-  const productData = getAmazonData()
+
+  const load = validateSession_id()
+
+  const username = load.username
+  const email = load.email
+  var money = load.money
 
   // initial use state submenu selected is "featured". setSelected is used to determine the page to take the user to, when selected
   const [selected, setSelected] = useState("featured");
 
   // Blank in initial state. Used for the data of projects in each subsection. setData changes the data with the switch cases in useEffect()
   const [data, setData] = useState([]);
+  const [all, setAll] = useState([]);
+
+  const current = 1
+  
+  var bounds = [[0, 10], [10, 25], [25, 50], [50, 100], [100, 1000000]]
+
+  useEffect(() => {
+        getAmazonData().then((response) => {return response}).then((r) => {
+            r.sort(function(a, b) {return a.price < b.price})
+            var allData = [[], [], [], [], []]
+            for (var j = 0; j < r.length; ++j) {
+                for (var i = 0; i < bounds.length; ++i) {
+                    if (r[j].price >= bounds[i][0] && r[j].price < bounds[i][1]) {
+                        allData[i].push(r[j])
+                    }
+                }
+            }
+            console.log(allData)
+            setData(r)
+            setAll(JSON.parse(JSON.stringify(allData)))
+        })
+  }, [current])
 
   // holds all the titles for the submenu in the projects section
   const list = [
     {
-      id: "featured",
-      title: "Featured",
+      id: "0-10",
+      title: "$0- $10",
     },
     {
-      id: "more_products_1",
-      title: "Section 1 of Products",
+      id: "10-25",
+      title: "$10- $25",
     },
     {
-      id: "more_products_2",
-      title: "Section 2 of Products",
+      id: "25-50",
+      title: "$25- $50",
     },
     {
-      id: "more_products_3",
-      title: "Section 3 of Products",
+      id: "50-100",
+      title: "$50- $100",
     },
     {
-      id: "more_products_4",
-      title: "Section 4 of Products",
+      id: "100+",
+      title: "$100+",
     },
   ];
 
   // every time the selected value changes (at the bottom of the function), useEffect() will be run
   useEffect(() => {
     switch (selected) {
-      case "featured":
-        setData(featuredProducts);
+      case "0-10":
+        setData(all[0]);
         break;
-      case "more_products_1":
-        setData(otherProductsSection1);
+      case "10-25":
+        setData(all[1]);
         break;
-      case "more_products_2":
-        setData(otherProductsSection2);
+      case "25-50":
+        setData(all[2]);
         break;
-      case "more_products_3":
-        setData(otherProductsSection3);
+      case "50-100":
+        console.log(4)
+        setData(all[3]);
         break;
-      case "more_products_4":
-        setData(otherProductsSection4);
+      case "100+":
+        setData(all[4]);
         break;
       default:
-        setData(featuredProducts);
+        setData(all[0]);
     }
   }, [selected]);
 
   return (
-    <div className="marketplace" id="marketplace">
+    <div className="marketplace" id="marketplace" style={{overflow: "scroll"}}>
       <h1>Marketplace</h1>
       <ul>
         {/* goes through EACH title (e.g. featured, mobile, web, etc...) and shows all the titles for submenu in Projects section.*/}
@@ -84,16 +106,17 @@ export default function Marketplace() {
           />
         ))}
       </ul>
-      <div className="container">
+      <div className="container" style={{minHeight: "100vh", overflow: "visible", border: "3px solid red"}}>
         {/* shows all item images and titles for the current chosen submenu (e.g. featured, mobile, web, etc...). setData is used in useEffect() to change the shown data (projects) */}
-        {data.map((data) => (
-          <div className="item">
-            <a href={data.url} rel="noreferrer" target="_blank">
-              <img src={data.img} alt="" />
-              <h3>{data.title}</h3>
-            </a>
-          </div>
-        ))}
+        {data.map((data) => { return (
+            <div className="item">
+                <a href={data.link} rel="noreferrer" target="_blank">
+                    <img src={data.image} alt="" />
+                    <h3 style={{width: "100%", height: "30%", textAlign: "center", marginBottom: "5%"}}>{data.name}</h3>
+                    <h3>${data.price}</h3>
+                </a>
+            </div>
+        )})}
       </div>
     </div>
   );

@@ -6,6 +6,7 @@ import Paper from '@material-ui/core/Paper';
 import Chart from './Chart';
 import Deposits from './Deposits';
 import Orders from './Orders';
+import { validateSession_id, getAmazonData } from "../../requests";
 
 const drawerWidth = 240;
 
@@ -89,6 +90,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Dashboard_Content() {
+
+  const load = validateSession_id()
+
+  const username = load.username
+  const email = load.email
+  var money = load.money
+
   const classes = useStyles();
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
