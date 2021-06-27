@@ -38,12 +38,6 @@ export const secondaryListItems = (
       </ListItemIcon>
       <ListItemText primary="Marketplace" />
     </ListItem>
-    <ListItem button component="a" href="/cart">
-      <ListItemIcon>
-        <HourglassEmptyIcon />
-      </ListItemIcon>
-      <ListItemText primary="Bought Items"/>
-    </ListItem>
     <ListItem button component="a" href="/settings">
       <ListItemIcon>
         <SettingsIcon />
