@@ -18,12 +18,7 @@ import axios from "axios";
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
-      <Link color="inherit" href="https://material-ui.com/">
-        KidBank
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
+      Copyright © PiggyBank 2021
     </Typography>
   );
 }
@@ -72,7 +67,7 @@ function Login() {
     axios
       .post(`http://localhost:3001/login`, { email: email, password: password }) //this link needs to be changed
       .then((res) => {
-        document.cookie = "session_id=" + res.data.session_id
+        document.cookie = "session_id=" + res.data.session_id;
       });
   };
 
