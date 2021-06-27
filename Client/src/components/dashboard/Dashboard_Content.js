@@ -4,7 +4,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Savings from "./Savings";
-import Deposits from "./Deposits";
+import Allowance from "./Allowance";
+import Interest from "./Interest";
 import Orders from "./Orders";
 import { validateSession_id, getAmazonData } from "../../requests";
 
@@ -101,16 +102,19 @@ export default function Dashboard_Content() {
 
   return (
     <Grid container spacing={3}>
-      {/* Chart */}
-      <Grid item xs={12} md={8} lg={9}>
+      <Grid item xs={12} md={8} lg={6}>
         <Paper className={fixedHeightPaper}>
           <Savings />
         </Paper>
       </Grid>
-      {/* Recent Deposits */}
       <Grid item xs={12} md={4} lg={3}>
         <Paper className={fixedHeightPaper}>
-          <Deposits />
+          <Allowance />
+        </Paper>
+      </Grid>
+      <Grid item xs={12} md={4} lg={3}>
+        <Paper className={fixedHeightPaper}>
+          <Interest />
         </Paper>
       </Grid>
       {/* Recent Orders */}
