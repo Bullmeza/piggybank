@@ -4,13 +4,14 @@ import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import SaveIcon from "@material-ui/icons/Save";
+import { validateSession_id, getAmazonData } from "../../requests";
 
 function Settings() {
   const load = validateSession_id()
 
   const username = load.username
   var money = load.money
-  
+
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>

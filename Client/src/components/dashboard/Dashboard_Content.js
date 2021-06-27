@@ -6,6 +6,7 @@ import Paper from '@material-ui/core/Paper';
 import Chart from './Chart';
 import Deposits from './Deposits';
 import Orders from './Orders';
+import { validateSession_id, getAmazonData } from "../../requests";
 
 const drawerWidth = 240;
 
