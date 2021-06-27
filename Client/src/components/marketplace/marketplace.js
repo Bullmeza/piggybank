@@ -21,7 +21,7 @@ export default function Marketplace() {
 
   const username = load.username
   var money = load.money
-  const email = "abhijain1778@gmail.com" //load.email
+  const email = load.email
 
   // initial use state submenu selected is "featured". setSelected is used to determine the page to take the user to, when selected
   const [selected, setSelected] = useState("featured");
