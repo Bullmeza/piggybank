@@ -7,6 +7,7 @@ import Savings from "./Savings";
 import Allowance from "./Allowance";
 import Interest from "./Interest";
 import AchievementsProgress from "./AchievementsProgress";
+import Badges from "./Badges"
 import { validateSession_id, getAmazonData } from "../../requests";
 
 const drawerWidth = 240;
@@ -120,6 +121,11 @@ export default function Dashboard_Content() {
       <Grid item xs={12}>
         <Paper className={classes.paper}>
           <AchievementsProgress />
+        </Paper>
+      </Grid>
+      <Grid item xs={12}>
+        <Paper className={classes.paper}>
+          <Badges/>
         </Paper>
       </Grid>
     </Grid>

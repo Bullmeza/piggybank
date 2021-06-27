@@ -7,9 +7,7 @@ function AchievementsProgress() {
     <React.Fragment>
       <Title>Achievements Progress</Title>
       <br />
-      <br />
       <ProgressBar />
-      <br />
       <br />
     </React.Fragment>
   );
